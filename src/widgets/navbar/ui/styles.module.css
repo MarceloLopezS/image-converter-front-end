@@ -1,0 +1,32 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5em;
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand__test {
+  height: 4rem;
+  aspect-ratio: 1;
+  background-color: #ff6000;
+  border-radius: 50%;
+}
+
+/* .navbar__brand img {
+  height: 5rem;
+  aspect-ratio: 1;
+  object-fit: cover;
+} */
+
+.navbar__nav ul {
+  display: flex;
+  gap: 1rem;
+}
