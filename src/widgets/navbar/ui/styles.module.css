@@ -2,7 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--bg-theme-nav);
   padding: 1.5em;
+  box-shadow: 0 1px 10px hsla(0, 0%, 0%, 0.25);
 }
 
 .navbar__brand {
@@ -13,20 +15,18 @@
   color: inherit;
 }
 
-.brand__test {
-  height: 4rem;
-  aspect-ratio: 1;
-  background-color: #ff6000;
-  border-radius: 50%;
-}
-
-/* .navbar__brand img {
-  height: 5rem;
+.navbar__brand img {
+  height: var(--size-40);
   aspect-ratio: 1;
   object-fit: cover;
-} */
+}
 
 .navbar__nav ul {
   display: flex;
-  gap: 1rem;
+  gap: var(--size-10);
+}
+
+.navbar__nav a:hover,
+.navbar__nav a:focus-visible {
+  color: var(--clr-accent-theme);
 }
