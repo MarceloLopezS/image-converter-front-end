@@ -39,7 +39,9 @@
   --default-animation-timing-function: ease;
 }
 
+
 /* CSS Reset */
+
 
 *,
 *::before,
@@ -133,4 +135,16 @@ a {
     --bg-theme-nav: var(--bg-theme-nav-dark);
     --clr-accent-theme: var(--clr-accent-400);
   }
+}
+
+
+/* Utility Classes */
+
+
+.content-wrapper {
+  --_max-width: 1920px;
+  --_inline-gap: var(--size-10);
+
+  width: min(var(--_max-width), 100% - (var(--_inline-gap) * 2));
+  margin-inline: auto;
 }
