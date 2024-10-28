@@ -35,7 +35,8 @@
 	--size-10: 1rem;
 	--size-40: 4rem;
 
-	--default-animation-duration: 300ms;
+	--animation-duration-300: 300ms;
+	--animation-duration-500: 500ms;
 	--default-animation-timing-function: ease;
 }
 
@@ -101,6 +102,8 @@ picture {
 /* GENERAL STYLING */
 
 body {
+	display: flex;
+	flex-direction: column;
 	font-family: "Comfortaa", sans-serif;
 	font-size: var(--fs-body);
 	font-weight: var(--fw-regular);
@@ -110,7 +113,7 @@ body {
 
 a {
 	outline: 1px solid transparent;
-	transition: color var(--default-animation-duration)
+	transition: color var(--animation-duration-300)
 		var(--default-animation-timing-function);
 }
 
