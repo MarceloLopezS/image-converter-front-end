@@ -1,9 +1,11 @@
 .navbar {
 	background-color: var(--bg-theme-nav);
 	box-shadow: 0 1px 10px hsla(0, 0%, 0%, 0.25);
+	transition: background-color var(--default-animation-duration)
+		var(--default-animation-timing-function);
 }
 
-.navbar > div {
+.navbar > :only-child {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -24,12 +26,43 @@
 	object-fit: cover;
 }
 
+.navbar__actions {
+	--_gap: var(--size-10);
+
+	display: flex;
+	gap: var(--_gap);
+}
+
 .navbar__nav ul {
 	display: flex;
-	gap: var(--size-10);
+	gap: var(--_gap);
 }
 
 .navbar__nav a:hover,
 .navbar__nav a:focus-visible {
 	color: var(--clr-accent-theme);
+}
+
+.theme-toggler {
+	width: 1.5em;
+	aspect-ratio: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+	color: var(--clr-theme);
+	border: none;
+	outline: 1px solid transparent;
+	transition: color var(--default-animation-duration)
+		var(--default-animation-timing-function);
+}
+
+.theme-toggler:hover,
+.theme-toggler:focus-visible {
+	color: var(--clr-accent-theme);
+}
+
+.theme-toggler svg {
+	width: 100%;
+	height: 100%;
 }
