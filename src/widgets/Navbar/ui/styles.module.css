@@ -1,7 +1,7 @@
 .navbar {
 	background-color: var(--bg-theme-nav);
 	box-shadow: 0 1px 10px hsla(0, 0%, 0%, 0.25);
-	transition: background-color var(--default-animation-duration)
+	transition: background-color var(--animation-duration-500)
 		var(--default-animation-timing-function);
 }
 
@@ -53,7 +53,7 @@
 	color: var(--clr-theme);
 	border: none;
 	outline: 1px solid transparent;
-	transition: color var(--default-animation-duration)
+	transition: color var(--animation-duration-300)
 		var(--default-animation-timing-function);
 }
 
