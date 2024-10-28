@@ -1,8 +1,12 @@
+import { useStoreData } from "../../shared/state/store"
+import ThemeToggler from "../../shared/ui/ThemeToggler"
 import styles from "./ui/styles.module.css"
 
 const Navbar = () => {
+	const theme = useStoreData(state => state.theme)
+
 	return (
-		<header className={styles.navbar}>
+		<header className={styles.navbar} data-theme={theme}>
 			<section className="content-wrapper">
 				<a className={styles.navbar__brand} href="/">
 					<img
@@ -13,7 +17,7 @@ const Navbar = () => {
 					/>
 					<span>Image IO</span>
 				</a>
-				<section>
+				<section className={styles.navbar__actions}>
 					<nav className={styles.navbar__nav}>
 						<ul>
 							<li>
@@ -27,7 +31,9 @@ const Navbar = () => {
 							</li>
 						</ul>
 					</nav>
-					<section>{/* <ThemeToggler /> */}</section>
+					<section>
+						<ThemeToggler className={styles["theme-toggler"]} />
+					</section>
 				</section>
 			</section>
 		</header>
