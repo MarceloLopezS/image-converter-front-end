@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import Navbar from "../widgets/Navbar"
+import Main from "../widgets/Main"
 
 const META_TITLE = "Image IO"
 const META_DESCRIPTION =
@@ -9,11 +10,15 @@ const META_DESCRIPTION =
 
 <Layout title={META_TITLE} description={META_DESCRIPTION}>
 	<Navbar client:only="react" />
-	<!--
-	<main>
-    <HeroSection />
+	<Main client:only="react">
+		<h1 class="fs-title fw-bold text-center">Image converter</h1>
+		<p class="text-center">Convert and optimize images</p>
+		<!-- 
     <ImageInputSection />
-    <ParamsDescriptionSection />
-	</main>
-  <Footer /> -->
+    <ParamsConfigSection />
+    <SupportedFormatsSection />
+    <AboutSection />
+    -->
+	</Main>
+	<!-- <Footer /> -->
 </Layout>
