@@ -25,12 +25,17 @@
 	--bg-theme: var(--bg-theme-light);
 	--bg-theme-nav: var(--bg-theme-nav-light);
 
+	--ff-primary: "Comfortaa", sans-serif;
+
 	--fw-regular: 400;
 
 	--fs-100: 1rem;
 	--fs-115: 1.15rem;
+	--fs-150: 1.5rem;
+	--fs-250: 2.5rem;
 
 	--fs-body: clamp(var(--fs-100), 1.25vw, var(--fs-115));
+	--fs-title: clamp(var(--fs-150), 2.15vw, var(--fs-250));
 
 	--size-10: 1rem;
 	--size-40: 4rem;
@@ -104,7 +109,7 @@ picture {
 body {
 	display: flex;
 	flex-direction: column;
-	font-family: "Comfortaa", sans-serif;
+	font-family: var(--ff-primary);
 	font-size: var(--fs-body);
 	font-weight: var(--fw-regular);
 	color: var(--clr-theme);
@@ -139,6 +144,18 @@ button {
 
 	width: min(var(--_max-width), 100% - (var(--_inline-gap) * 2));
 	margin-inline: auto;
+}
+
+.fs-title {
+	font-size: var(--fs-title);
+}
+
+.fw-bold {
+	font-weight: bold;
+}
+
+.text-center {
+	text-align: center;
 }
 
 .visually-hidden {
