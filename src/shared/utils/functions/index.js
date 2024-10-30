@@ -4,7 +4,7 @@ export const setLocalStorageItem = (key, item) => {
   return localStorage.setItem(key, JSON.stringify(item))
 }
 
-export const getLocalStorageItem = (key) => {
+export const getLocalStorageItem = key => {
   return JSON.parse(localStorage.getItem(key))
 }
 
@@ -13,7 +13,5 @@ export const getPreferedColorScheme = () => {
 
   if (localPreference) return localPreference
 
-  return window.matchMedia(PREFERS_COLOR_SCHEME_DARK).matches
-    ? DARK
-    : LIGHT
+  return window.matchMedia(PREFERS_COLOR_SCHEME_DARK).matches ? DARK : LIGHT
 }
