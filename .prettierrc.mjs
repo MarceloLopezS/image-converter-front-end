@@ -5,8 +5,12 @@ export default {
     {
       files: "*.astro",
       options: {
-        parser: "astro",
-      },
-    },
+        parser: "astro"
+      }
+    }
   ],
-};
+  arrowParens: "avoid",
+  semi: false,
+  tabWidth: 2,
+  trailingComma: "none"
+}
