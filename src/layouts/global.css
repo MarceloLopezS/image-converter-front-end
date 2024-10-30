@@ -8,36 +8,59 @@
 :root {
 	--clr-neutral-100: hsl(23, 100%, 99%);
 	--clr-neutral-200: hsl(23, 100%, 97%);
+	--clr-neutral-300: hsl(23, 6%, 70%);
+	--clr-neutral-400: hsl(23, 6%, 33%);
 	--clr-neutral-800: hsl(23, 6%, 15%);
 	--clr-neutral-900: hsl(23, 6%, 10%);
 
 	--clr-accent-400: hsl(23, 100%, 50%);
+	--clr-accent-500: hsl(23, 100%, 39%);
 
 	--clr-theme-light: var(--clr-neutral-900);
 	--clr-theme-dark: var(--clr-neutral-100);
+	--clr-btn-light: var(--clr-neutral-100);
+	--clr-btn-dark: var(--clr-neutral-900);
+	--clr-text-secondary-light: var(--clr-neutral-400);
+	--clr-text-secondary-dark: var(--clr-neutral-300);
 	--bg-theme-light: var(--clr-neutral-200);
 	--bg-theme-dark: var(--clr-neutral-800);
 	--bg-theme-nav-light: var(--clr-neutral-100);
 	--bg-theme-nav-dark: var(--clr-neutral-900);
+	--bg-btn-hover-light: color-mix(
+		in oklab,
+		var(--clr-accent-500) 90%,
+		var(--clr-neutral-800) 10%
+	);
+	--bg-btn-hover-dark: color-mix(
+		in oklab,
+		var(--clr-accent-400) 92%,
+		var(--clr-neutral-200) 8%
+	);
 
 	--clr-theme: var(--clr-theme-light);
-	--clr-accent-theme: var(--clr-accent-400);
+	--clr-accent-theme: var(--clr-accent-500);
+	--clr-secondary-text: var(--clr-text-secondary-light);
+	--clr-btn-theme: var(--clr-btn-light);
 	--bg-theme: var(--bg-theme-light);
 	--bg-theme-nav: var(--bg-theme-nav-light);
+	--bg-btn-hover: var(--bg-btn-hover-light);
 
 	--ff-primary: "Comfortaa", sans-serif;
 
 	--fw-regular: 400;
 
+	--fs-80: 0.8rem;
 	--fs-100: 1rem;
 	--fs-115: 1.15rem;
 	--fs-150: 1.5rem;
 	--fs-250: 2.5rem;
 
 	--fs-body: clamp(var(--fs-100), 1.25vw, var(--fs-115));
-	--fs-title: clamp(var(--fs-150), 2.15vw, var(--fs-250));
+	--fs-title: clamp(var(--fs-150), 2.5vw, var(--fs-250));
+	--fs-secondary: clamp(var(--fs-80), 1vw, var(--fs-100));
 
 	--size-10: 1rem;
+	--size-25: 2.5rem;
 	--size-40: 4rem;
 
 	--animation-duration-300: 300ms;
@@ -128,9 +151,12 @@ button {
 
 [data-theme="dark"] {
 	--clr-theme: var(--clr-theme-dark);
+	--clr-accent-theme: var(--clr-accent-400);
+	--clr-secondary-text: var(--clr-text-secondary-dark);
+	--clr-btn-theme: var(--clr-btn-dark);
 	--bg-theme: var(--bg-theme-dark);
 	--bg-theme-nav: var(--bg-theme-nav-dark);
-	--clr-accent-theme: var(--clr-accent-400);
+	--bg-btn-hover: var(--bg-btn-hover-dark);
 
 	color: var(--clr-theme);
 	background-color: var(--bg-theme);
@@ -148,6 +174,11 @@ button {
 
 .fs-title {
 	font-size: var(--fs-title);
+}
+
+.text-secondary {
+	font-size: var(--fs-secondary);
+	color: var(--clr-secondary-text);
 }
 
 .fw-bold {
