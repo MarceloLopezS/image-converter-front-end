@@ -1,74 +1,74 @@
 .navbar {
-	background-color: var(--bg-theme-nav);
-	box-shadow: 0 1px 10px hsla(0, 0%, 0%, 0.25);
-	transition: background-color var(--animation-duration-500)
-		var(--default-animation-timing-function);
+  background-color: var(--bg-theme-nav);
+  box-shadow: 0 1px 10px hsla(0, 0%, 0%, 0.25);
+  transition: background-color var(--animation-duration-500)
+    var(--default-animation-timing-function);
 }
 
 .navbar > :only-child {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding-block: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 1em;
 }
 
 .navbar__brand {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	text-decoration: none;
-	color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
 }
 
 .navbar__brand img {
-	height: var(--size-40);
-	aspect-ratio: 1;
-	object-fit: cover;
+  height: var(--size-40);
+  aspect-ratio: 1;
+  object-fit: cover;
 }
 
 .navbar__actions {
-	--_gap: var(--size-10);
+  --_gap: var(--size-10);
 
-	display: flex;
-	gap: var(--_gap);
+  display: flex;
+  gap: var(--_gap);
 }
 
 .navbar__nav ul {
-	display: flex;
-	gap: var(--_gap);
+  display: flex;
+  gap: var(--_gap);
 }
 
 .navbar__nav a:hover,
 .navbar__nav a:focus-visible {
-	color: var(--clr-accent-theme);
+  color: var(--clr-accent-theme);
 }
 
 .theme-toggler {
-	width: 1.5em;
-	aspect-ratio: 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: transparent;
-	color: var(--clr-theme);
-	border: none;
-	outline: 1px solid transparent;
-	transition: color var(--animation-duration-300)
-		var(--default-animation-timing-function);
+  width: 1.5em;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: var(--clr-theme);
+  border: none;
+  outline: 1px solid transparent;
+  transition: color var(--animation-duration-300)
+    var(--default-animation-timing-function);
 }
 
 .theme-toggler:hover,
 .theme-toggler:focus-visible {
-	color: var(--clr-accent-theme);
+  color: var(--clr-accent-theme);
 }
 
 .theme-toggler svg {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 @media (max-width: 49rem) {
-	.navbar__brand > span {
-		display: none;
-	}
+  .navbar__brand > span {
+    display: none;
+  }
 }

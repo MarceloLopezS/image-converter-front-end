@@ -5,15 +5,15 @@ import SunSVG from "../SVGs/Sun"
 import MoonSVG from "../SVGs/Moon"
 
 const ThemeToggler = ({ ...attributes }) => {
-	const theme = useStoreData(state => state.theme)
-	const dispatchAction = () => dispatch({ type: TOGGLE_THEME })
+  const theme = useStoreData(state => state.theme)
+  const dispatchAction = () => dispatch({ type: TOGGLE_THEME })
 
-	return (
-		<button type="button" onClick={dispatchAction} {...attributes}>
-			<span className="visually-hidden">Toggle Theme</span>
-			{theme === DARK ? <SunSVG /> : <MoonSVG />}
-		</button>
-	)
+  return (
+    <button type="button" onClick={dispatchAction} {...attributes}>
+      <span className="visually-hidden">Toggle Theme</span>
+      {theme === DARK ? <SunSVG /> : <MoonSVG />}
+    </button>
+  )
 }
 
 export default ThemeToggler

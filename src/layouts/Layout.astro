@@ -2,8 +2,8 @@
 import "./global.css"
 
 type Props = {
-	title: string
-	description: string
+  title: string
+  description: string
 }
 
 const { title, description } = Astro.props
@@ -11,14 +11,14 @@ const { title, description } = Astro.props
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" href="/imageio-logo.webp" />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/imageio-logo.webp" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
