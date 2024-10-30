@@ -1,0 +1,15 @@
+.file-control {
+	display: grid;
+	gap: 1em;
+	padding-block: 2.5em;
+	margin-inline: auto;
+}
+
+@media (min-width: 69rem) {
+	.file-control {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2em;
+		width: 80%;
+	}
+}
