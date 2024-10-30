@@ -1,0 +1,44 @@
+.image-control {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.image-control__file-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	aspect-ratio: 5 / 4;
+	gap: 0.5em;
+	background-color: color-mix(
+		in oklab,
+		var(--bg-theme) 96%,
+		var(--clr-accent-theme) 4%
+	);
+	border: 2px dashed var(--clr-accent-theme);
+	border-radius: 0.5em;
+	transition: background-color var(--animation-duration-500)
+		var(--default-animation-timing-function);
+}
+
+.file-input {
+	color: var(--clr-btn-theme);
+	background-color: var(--clr-accent-theme);
+	padding: 0.25em 0.5em;
+	border: none;
+	border-radius: 0.25em;
+	transition: background-color var(--animation-duration-300)
+		var(--default-animation-timing-function);
+}
+
+.file-input svg {
+	width: 1em;
+	height: 1em;
+}
+
+.file-input:hover,
+.file-input:focus-within {
+	background-color: var(--bg-btn-hover);
+}
