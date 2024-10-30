@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro"
 import Navbar from "../widgets/Navbar"
 import Main from "../widgets/Main"
+import FileControlSection from "../widgets/FileControlSection"
 
 const META_TITLE = "Image IO"
 const META_DESCRIPTION =
@@ -13,6 +14,7 @@ const META_DESCRIPTION =
 	<Main client:only="react">
 		<h1 class="fs-title fw-bold text-center">Image converter</h1>
 		<p class="text-center">Convert and optimize images</p>
+		<FileControlSection />
 		<!-- 
     <ImageInputSection />
     <ParamsConfigSection />
