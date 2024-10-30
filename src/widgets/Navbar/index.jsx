@@ -1,5 +1,5 @@
-import { useStoreData } from "../../shared/state/store"
-import ThemeToggler from "../../shared/ui/ThemeToggler"
+import { useStoreData } from "@shared/state/store"
+import ThemeToggler from "@shared/ui/ThemeToggler"
 import styles from "./ui/styles.module.css"
 
 const Navbar = () => {

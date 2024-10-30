@@ -1,4 +1,4 @@
-import { useStoreData } from "../../shared/state/store"
+import { useStoreData } from "@shared/state/store"
 import styles from "./ui/styles.module.css"
 
 const Main = ({ children, ...attributes }) => {
