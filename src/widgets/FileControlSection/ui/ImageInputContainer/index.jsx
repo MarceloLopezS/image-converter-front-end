@@ -3,6 +3,8 @@ import FileInput from "../../../../shared/ui/FileInput"
 import FileSVG from "../../../../shared/ui/SVGs/File"
 import styles from "./ui/styles.module.css"
 
+const ACCEPTED_FILES = ["image/png", "image/jpeg", "image/webp"]
+
 const ImageInputContainer = () => {
 	const inputRef = useRef(null)
 
@@ -14,7 +16,7 @@ const ImageInputContainer = () => {
 					className={styles["file-input"]}
 					fileTypeIndicator={<FileSVG />}
 					inputDescription="Choose files"
-					acceptedFileTypes={["image/png", "image/jpeg", "image/webp"]}
+					acceptedFileTypes={ACCEPTED_FILES}
 				/>
 				<p className="text-secondary">Or drop them here. Max size: 10MB.</p>
 			</div>
