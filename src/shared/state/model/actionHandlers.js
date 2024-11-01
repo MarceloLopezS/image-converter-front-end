@@ -8,3 +8,10 @@ export const toggleTheme = state => {
 
   return { ...state, theme }
 }
+
+export const addFiles = (state, action) => {
+  const { payload } = action
+  const files = [...state.files, ...payload]
+
+  return { ...state, files }
+}
