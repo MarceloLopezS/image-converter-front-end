@@ -1,0 +1,55 @@
+.file-item {
+  --_border-radius: 0.5em;
+  --_gap: 1em;
+
+  display: flex;
+  align-items: center;
+  gap: var(--_gap);
+  padding: 0.5em;
+  border: 1px solid var(--clr-accent-theme);
+}
+
+.file-item:first-child {
+  border-start-start-radius: var(--_border-radius);
+  border-start-end-radius: var(--_border-radius);
+}
+
+.file-item:last-child {
+  border-end-start-radius: var(--_border-radius);
+  border-end-end-radius: var(--_border-radius);
+}
+
+.file-item:not(:last-child) {
+  border-block-end: none;
+}
+
+.file-item__info {
+  flex-grow: 1;
+}
+
+.file-item__actions {
+  display: flex;
+  gap: var(--_gap);
+  align-items: center;
+}
+
+.file-item__actions > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: var(--clr-theme);
+  border: none;
+  transition: color var(--animation-duration-300)
+    var(--default-animation-timing-function);
+}
+
+.file-item__actions > button:hover,
+.file-item__actions > button:focus-visible {
+  color: var(--clr-accent-theme);
+}
+
+.file-item__actions svg {
+  width: 1.5em;
+  height: 1.5em;
+}
