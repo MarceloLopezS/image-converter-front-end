@@ -1,6 +1,7 @@
+import { formatBytes } from "@shared/utils/functions"
 import DeleteSVG from "@shared/ui/SVGs/Delete"
 import SettingsSVG from "@shared/ui/SVGs/Settings"
-import { formatBytes } from "@shared/utils/functions"
+import styles from "./ui/styles.module.css"
 
 const handleSettingsClick = event => {} // TODO
 
@@ -8,14 +9,14 @@ const handleDeleteClick = event => {} // TODO
 
 const File = ({ inputFile, outputOptions }) => {
   return (
-    <div>
-      <section>
+    <div className={styles["file-item"]}>
+      <section className={styles["file-item__info"]}>
         <p>{inputFile.name}</p>
-        <p>{formatBytes(inputFile.size)}</p>
+        <p className="text-secondary">{formatBytes(inputFile.size)}</p>
       </section>
-      <section>
+      <section className={styles["file-item__actions"]}>
         <div>
-          <label htmlFor="output-format">Output:</label>
+          <label htmlFor="output-format">Output: </label>
           <select name="output-format" id="output-format">
             {outputOptions.map(outputOption => (
               <option value={outputOption} key={outputOption}>
@@ -23,13 +24,13 @@ const File = ({ inputFile, outputOptions }) => {
               </option>
             ))}
           </select>
-          <button onClick={handleSettingsClick}>
-            <SettingsSVG />
-          </button>
-          <button onClick={handleDeleteClick}>
-            <DeleteSVG />
-          </button>
         </div>
+        <button onClick={handleSettingsClick} type="button">
+          <SettingsSVG />
+        </button>
+        <button onClick={handleDeleteClick} type="button">
+          <DeleteSVG />
+        </button>
       </section>
     </div>
   )
