@@ -34,35 +34,35 @@ const ImageInputContainer = () => {
 
   return (
     <section className={styles["image-control"]}>
-      <div className={styles["image-control__file-container"]}>
-        {files.length > 0 ? (
-          files.map(file => (
+      {files.length > 0 ? (
+        <div className={styles["image-control__files-container"]}>
+          {files.map(file => (
             <File
               inputFile={file}
               outputOptions={OUTPUT_OPTIONS}
               key={file.name}
             />
-          ))
-        ) : (
-          <>
-            {!fileInputHandler.isValid && (
-              <div>{fileInputHandler.errorMessage}</div>
-            )}
-            <Form>
-              <FileInput
-                ref={fileInputHandler.inputRef}
-                className={styles["file-input"]}
-                fileTypeIndicator={<FileSVG />}
-                inputDescription="Choose files"
-                acceptedFileTypes={ACCEPTED_FILES}
-                onChange={handleFileChange}
-                multiple
-              />
-            </Form>
-            <p className="text-secondary">Or drop them here. Max size: 10MB.</p>
-          </>
-        )}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className={styles["image-control__file-input-container"]}>
+          {!fileInputHandler.isValid && (
+            <div>{fileInputHandler.errorMessage}</div>
+          )}
+          <Form>
+            <FileInput
+              ref={fileInputHandler.inputRef}
+              className={styles["file-input"]}
+              fileTypeIndicator={<FileSVG />}
+              inputDescription="Choose files"
+              acceptedFileTypes={ACCEPTED_FILES}
+              onChange={handleFileChange}
+              multiple
+            />
+          </Form>
+          <p className="text-secondary">Or drop them here. Max size: 10MB.</p>
+        </div>
+      )}
     </section>
   )
 }
