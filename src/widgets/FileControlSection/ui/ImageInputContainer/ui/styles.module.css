@@ -1,10 +1,13 @@
 .image-control {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
 }
 
-.image-control__file-container {
+.image-control__files-container {
+  justify-self: stretch;
+}
+
+.image-control__file-input-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
