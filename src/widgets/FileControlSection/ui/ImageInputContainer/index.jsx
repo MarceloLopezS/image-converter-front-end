@@ -35,7 +35,7 @@ const ImageInputContainer = () => {
   return (
     <section className={styles["image-control"]}>
       {files.length > 0 ? (
-        <div className={styles["image-control__files-container"]}>
+        <section className={styles["image-control__files-container"]}>
           {files.map(file => (
             <File
               inputFile={file}
@@ -44,9 +44,28 @@ const ImageInputContainer = () => {
               key={file.name}
             />
           ))}
-        </div>
+          <section className={styles["image-control__files-output"]}>
+            <div>
+              <label htmlFor="all-files-output">Convert all to: </label>
+              <select name="all-files-output" id="all-files-output">
+                <option selected disabled>
+                  -
+                </option>
+                {OUTPUT_OPTIONS.map(option => (
+                  <option value={option} key={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button className={styles["image-control__submit"]} type="button">
+              Convert
+              <i className={styles["arrow"]}></i>
+            </button>
+          </section>
+        </section>
       ) : (
-        <div className={styles["image-control__file-input-container"]}>
+        <section className={styles["image-control__file-input-container"]}>
           {!fileInputHandler.isValid && (
             <div>{fileInputHandler.errorMessage}</div>
           )}
@@ -62,7 +81,7 @@ const ImageInputContainer = () => {
             />
           </Form>
           <p className="text-secondary">Or drop them here. Max size: 10MB.</p>
-        </div>
+        </section>
       )}
     </section>
   )
