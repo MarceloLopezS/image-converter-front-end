@@ -7,9 +7,11 @@ const handleSettingsClick = event => {} // TODO
 
 const handleDeleteClick = event => {} // TODO
 
-const File = ({ inputFile, outputOptions }) => {
+const File = ({ inputFile, outputOptions, className }) => {
   return (
-    <div className={styles["file-item"]}>
+    <div
+      className={`${styles["file-item"]}${className ? " " + className : ""}`}
+    >
       <section className={styles["file-item__info"]}>
         <p>{inputFile.name}</p>
         <p className="text-secondary">{formatBytes(inputFile.size)}</p>
