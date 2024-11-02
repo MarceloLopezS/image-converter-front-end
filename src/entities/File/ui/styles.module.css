@@ -1,26 +1,10 @@
 .file-item {
-  --_border-radius: 0.5em;
   --_gap: 1em;
 
   display: flex;
   align-items: center;
   gap: var(--_gap);
   padding: 0.5em;
-  border: 1px solid var(--clr-accent-theme);
-}
-
-.file-item:first-child {
-  border-start-start-radius: var(--_border-radius);
-  border-start-end-radius: var(--_border-radius);
-}
-
-.file-item:last-child {
-  border-end-start-radius: var(--_border-radius);
-  border-end-end-radius: var(--_border-radius);
-}
-
-.file-item:not(:last-child) {
-  border-block-end: none;
 }
 
 .file-item__info {
