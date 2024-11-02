@@ -9,7 +9,7 @@ const handleDeleteClick = event => {} // TODO
 
 const File = ({ inputFile, outputOptions, className }) => {
   return (
-    <div
+    <section
       className={`${styles["file-item"]}${className ? " " + className : ""}`}
     >
       <section className={styles["file-item__info"]}>
@@ -20,9 +20,12 @@ const File = ({ inputFile, outputOptions, className }) => {
         <div>
           <label htmlFor="output-format">Output: </label>
           <select name="output-format" id="output-format">
+            <option selected disabled>
+              -
+            </option>
             {outputOptions.map(outputOption => (
               <option value={outputOption} key={outputOption}>
-                {outputOption.toUpperCase()}
+                {outputOption}
               </option>
             ))}
           </select>
@@ -34,7 +37,7 @@ const File = ({ inputFile, outputOptions, className }) => {
           <DeleteSVG />
         </button>
       </section>
-    </div>
+    </section>
   )
 }
 
