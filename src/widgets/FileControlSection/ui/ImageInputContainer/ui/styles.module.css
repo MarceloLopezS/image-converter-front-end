@@ -4,7 +4,27 @@
 }
 
 .image-control__files-container {
+  --_border-radius: 0.5em;
+
   justify-self: stretch;
+}
+
+.image-control__file-item {
+  border: 1px solid var(--clr-accent-theme);
+}
+
+.image-control__file-item:not(:last-child) {
+  border-block-end: none;
+}
+
+.image-control__file-item:first-child {
+  border-start-start-radius: var(--_border-radius);
+  border-start-end-radius: var(--_border-radius);
+}
+
+.image-control__file-item:last-child {
+  border-end-start-radius: var(--_border-radius);
+  border-end-end-radius: var(--_border-radius);
 }
 
 .image-control__file-input-container {

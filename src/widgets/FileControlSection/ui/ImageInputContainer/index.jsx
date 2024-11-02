@@ -40,6 +40,7 @@ const ImageInputContainer = () => {
             <File
               inputFile={file}
               outputOptions={OUTPUT_OPTIONS}
+              className={styles["image-control__file-item"]}
               key={file.name}
             />
           ))}
