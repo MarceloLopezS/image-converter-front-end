@@ -28,8 +28,8 @@
   --bg-theme-nav-dark: var(--clr-neutral-900);
   --bg-btn-hover-light: color-mix(
     in oklab,
-    var(--clr-accent-500) 90%,
-    var(--clr-neutral-800) 10%
+    var(--clr-accent-500) 92%,
+    var(--clr-neutral-800) 8%
   );
   --bg-btn-hover-dark: color-mix(
     in oklab,
