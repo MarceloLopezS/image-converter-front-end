@@ -33,21 +33,34 @@ const ImageInputContainer = () => {
   }
 
   return (
-    <section className={styles["image-control"]}>
+    <section className={styles["file-control"]}>
       {files.length > 0 ? (
-        <section className={styles["image-control__files-container"]}>
-          {files.map(file => (
-            <File
-              inputFile={file}
-              outputOptions={OUTPUT_OPTIONS}
-              className={styles["image-control__file-item"]}
-              key={file.name}
+        <section className={styles["file-control__files-container"]}>
+          <section className={styles["file-control__add-files"]}>
+            <FileInput
+              ref={fileInputHandler.inputRef}
+              className={styles["add-more-files-input"]}
+              fileTypeIndicator={<FileSVG />}
+              inputDescription="Add more files"
+              acceptedFileTypes={ACCEPTED_FILES}
+              onChange={handleFileChange}
+              multiple
             />
-          ))}
-          <section className={styles["image-control__files-output"]}>
-            <div>
+          </section>
+          <section className={styles["file-control__files-preview"]}>
+            {files.map(file => (
+              <File
+                inputFile={file}
+                outputOptions={OUTPUT_OPTIONS}
+                className={styles["file-control__file-item"]}
+                key={file.name}
+              />
+            ))}
+          </section>
+          <section className={styles["file-control__output-actions"]}>
+            <div className="flex gap-50">
               <label htmlFor="all-files-output">Convert all to: </label>
-              <select name="all-files-output" id="all-files-output">
+              <select id="all-files-output">
                 <option selected disabled>
                   -
                 </option>
@@ -58,14 +71,14 @@ const ImageInputContainer = () => {
                 ))}
               </select>
             </div>
-            <button className={styles["image-control__submit"]} type="button">
+            <button className={styles["file-control__submit"]} type="button">
               Convert
               <i className={styles["arrow"]}></i>
             </button>
           </section>
         </section>
       ) : (
-        <section className={styles["image-control__file-input-container"]}>
+        <section className={styles["file-control__file-input-container"]}>
           {!fileInputHandler.isValid && (
             <div>{fileInputHandler.errorMessage}</div>
           )}

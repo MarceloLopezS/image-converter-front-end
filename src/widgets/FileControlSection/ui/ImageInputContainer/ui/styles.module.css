@@ -1,9 +1,9 @@
-.image-control {
+.file-control {
   display: grid;
   place-items: center;
 }
 
-.image-control__file-input-container {
+.file-control__file-input-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,7 +23,8 @@
 }
 
 .file-input,
-.image-control__submit {
+.add-more-files-input,
+.file-control__submit {
   color: var(--clr-btn-theme);
   background-color: var(--clr-accent-theme);
   border: none;
@@ -36,41 +37,67 @@
   border-radius: 0.25em;
 }
 
-.file-input svg {
+.file-input svg,
+.add-more-files-input svg {
   width: 1em;
   height: 1em;
 }
 
 .file-input:hover,
 .file-input:focus-within,
-.image-control__submit:hover,
-.image-control__submit:focus-visible {
+.add-more-files-input:hover,
+.add-more-files-input:focus-within,
+.file-control__submit:hover,
+.file-control__submit:focus-visible {
   background-color: var(--bg-btn-hover);
 }
 
-.image-control__files-container {
+.file-control__files-container {
   --_border: 1px solid var(--clr-accent-theme);
+  --_border-radius: 0.5em;
+
   justify-self: stretch;
+  display: grid;
+}
+
+.file-control__add-files {
+  justify-self: start;
+}
+
+.add-more-files-input {
+  justify-self: start;
+  align-self: end;
+  height: 2.5em;
+  padding-inline: 1em;
+  border-start-start-radius: var(--_border-radius);
+  border-start-end-radius: var(--_border-radius);
+}
+
+.file-control__files-preview {
   display: grid;
   grid-auto-rows: 1fr;
   border: var(--_border);
-  border-radius: 0.5em;
-  overflow: hidden;
+  border-start-end-radius: var(--_border-radius);
 }
 
-.image-control__file-item:not(:nth-last-child(2)) {
+.file-control__file-item:not(:last-child) {
   border-block-end: var(--_border);
 }
 
-.image-control__files-output {
+.file-control__output-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 3.5em;
   padding-inline-start: 0.5em;
-  border-block-start: var(--_border);
+  border-block-end: var(--_border);
+  border-inline-start: var(--_border);
+  border-end-start-radius: var(--_border-radius);
+  border-end-end-radius: var(--_border-radius);
+  overflow: hidden;
 }
 
-.image-control__submit {
+.file-control__submit {
   height: 100%;
   display: flex;
   align-items: center;
@@ -92,7 +119,7 @@
     var(--default-animation-timing-function);
 }
 
-.image-control__submit:hover .arrow,
-.image-control__submit:focus-visible .arrow {
+.file-control__submit:hover .arrow,
+.file-control__submit:focus-visible .arrow {
   translate: 100%;
 }
