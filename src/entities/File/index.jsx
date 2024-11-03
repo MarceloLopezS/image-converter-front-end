@@ -17,7 +17,7 @@ const File = ({ inputFile, outputOptions, className }) => {
         <p className="text-secondary">{formatBytes(inputFile.size)}</p>
       </section>
       <section className={styles["file-item__actions"]}>
-        <div>
+        <div className="flex sm-flex-column gap-50">
           <label htmlFor="output-format">Output: </label>
           <select name="output-format" id="output-format">
             <option selected disabled>
