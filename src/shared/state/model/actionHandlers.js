@@ -11,7 +11,10 @@ export const toggleTheme = state => {
 
 export const addFiles = (state, action) => {
   const { payload } = action
-  const files = [...state.files, ...payload]
+  const unrepeatedFiles = [...payload].filter(file => {
+    return !state.files.find(stateFile => stateFile.name === file.name)
+  })
+  const files = [...unrepeatedFiles, ...state.files]
 
   return { ...state, files }
 }
