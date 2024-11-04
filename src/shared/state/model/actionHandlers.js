@@ -15,3 +15,10 @@ export const addFiles = (state, action) => {
 
   return { ...state, files }
 }
+
+export const deleteFile = (state, action) => {
+  const { fileName } = action.payload
+  const files = state.files.filter(file => file.name !== fileName)
+
+  return { ...state, files }
+}
