@@ -1,3 +1,5 @@
+import { dispatch } from "@shared/state/store"
+import { DELETE_FILE } from "@shared/state/config/actions"
 import { formatBytes } from "@shared/utils/functions"
 import DeleteSVG from "@shared/ui/SVGs/Delete"
 import SettingsSVG from "@shared/ui/SVGs/Settings"
@@ -5,7 +7,9 @@ import styles from "./ui/styles.module.css"
 
 const handleSettingsClick = event => {} // TODO
 
-const handleDeleteClick = event => {} // TODO
+const handleDeleteClick = fileName => () => {
+  dispatch({ type: DELETE_FILE, payload: { fileName } })
+}
 
 const File = ({ inputFile, outputOptions, className }) => {
   return (
@@ -33,7 +37,7 @@ const File = ({ inputFile, outputOptions, className }) => {
         <button onClick={handleSettingsClick} type="button">
           <SettingsSVG />
         </button>
-        <button onClick={handleDeleteClick} type="button">
+        <button onClick={handleDeleteClick(inputFile.name)} type="button">
           <DeleteSVG />
         </button>
       </section>
