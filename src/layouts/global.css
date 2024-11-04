@@ -138,6 +138,9 @@ body {
   font-weight: var(--fw-regular);
   color: var(--clr-theme);
   background-color: var(--bg-theme);
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--clr-theme);
 }
 
 a {
@@ -161,6 +164,26 @@ button {
 
   color: var(--clr-theme);
   background-color: var(--bg-theme);
+}
+
+::-webkit-scrollbar {
+  width: 0.2em;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  margin-block: 0.15em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--clr-secondary-text);
+  border-radius: 0.2em;
+}
+
+@media (hover: hover) {
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--clr-theme);
+  }
 }
 
 /* Utility Classes */
