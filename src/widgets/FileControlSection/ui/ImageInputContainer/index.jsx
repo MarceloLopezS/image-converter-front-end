@@ -1,6 +1,6 @@
 import { dispatch, useStoreData } from "@shared/state/store"
 import { ADD_FILES } from "@shared/state/config/actions"
-import Form, { useInputValidationHandler } from "@shared/ui/Form"
+import { useInputValidationHandler } from "@shared/ui/Form"
 import {
   isFileInputValid,
   handleInvalidFileInputMessage
@@ -59,7 +59,9 @@ const ImageInputContainer = () => {
           </section>
           <section className={styles["file-control__output-actions"]}>
             <div className="flex gap-50">
-              <label htmlFor="all-files-output">Convert all to: </label>
+              <label htmlFor="all-files-output">
+                All {`(${files.length})`} output:
+              </label>
               <select id="all-files-output">
                 <option selected disabled>
                   -
@@ -82,17 +84,15 @@ const ImageInputContainer = () => {
           {!fileInputHandler.isValid && (
             <div>{fileInputHandler.errorMessage}</div>
           )}
-          <Form>
-            <FileInput
-              ref={fileInputHandler.inputRef}
-              className={styles["file-input"]}
-              fileTypeIndicator={<FileSVG />}
-              inputDescription="Choose files"
-              acceptedFileTypes={ACCEPTED_FILES}
-              onChange={handleFileChange}
-              multiple
-            />
-          </Form>
+          <FileInput
+            ref={fileInputHandler.inputRef}
+            className={styles["file-input"]}
+            fileTypeIndicator={<FileSVG />}
+            inputDescription="Choose files"
+            acceptedFileTypes={ACCEPTED_FILES}
+            onChange={handleFileChange}
+            multiple
+          />
           <p className="text-secondary">Or drop them here. Max size: 10MB.</p>
         </section>
       )}
