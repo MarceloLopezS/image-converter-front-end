@@ -39,8 +39,10 @@
   color: var(--clr-btn-theme);
   background-color: var(--clr-accent-theme);
   border: none;
-  transition: background-color var(--animation-duration-300)
-    var(--default-animation-timing-function);
+  transition-property: color, background-color;
+  transition-duration: var(--animation-duration-300),
+    var(--animation-duration-500);
+  transition-timing-function: var(--default-animation-timing-function);
 }
 
 .file-input {
