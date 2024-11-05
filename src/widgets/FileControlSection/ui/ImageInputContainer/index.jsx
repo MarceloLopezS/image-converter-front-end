@@ -27,7 +27,7 @@ const ImageInputContainer = () => {
 
     dispatch({
       type: ADD_FILES,
-      payload: fileInputHandler.inputRef.current.files
+      payload: { selectedFiles: fileInputHandler.inputRef.current.files }
     })
     return
   }
