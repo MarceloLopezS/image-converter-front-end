@@ -1,9 +1,9 @@
-import { SET_FILES_OUTPUT_FORMAT } from "@shared/state/config/actions"
-import { dispatch, useStoreData } from "@shared/state/store"
 import { useRef } from "react"
+import { dispatch, useStoreData } from "@shared/state/store"
+import { SET_FILES_OUTPUT_FORMAT } from "@shared/state/config/actions"
 
 const FileOutputSelect = ({ fileName, outputOptions }) => {
-  const selectRef = useRef(null)
+  const outputSelectRef = useRef(null)
   const fileFormat = useStoreData(
     state => state.filesConfig[fileName].outputFormat
   )
@@ -11,7 +11,7 @@ const FileOutputSelect = ({ fileName, outputOptions }) => {
   const handleOutputSelect = () => {
     const fileConfig = {
       fileName: fileName,
-      outputFormat: selectRef.current?.value
+      outputFormat: outputSelectRef.current?.value
     }
 
     dispatch({
@@ -22,7 +22,7 @@ const FileOutputSelect = ({ fileName, outputOptions }) => {
 
   return (
     <select
-      ref={selectRef}
+      ref={outputSelectRef}
       onChange={handleOutputSelect}
       name="output-format"
       id="output-format"
