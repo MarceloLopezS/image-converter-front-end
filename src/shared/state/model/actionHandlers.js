@@ -1,4 +1,4 @@
-import { DARK, LIGHT, THEME } from "../../utils/constants"
+import { DARK, INITIAL_FILE_PARAMS, LIGHT, THEME } from "../../utils/constants"
 import { setLocalStorageItem } from "../../utils/functions"
 
 export const toggleTheme = state => {
@@ -16,12 +16,27 @@ export const addFiles = (state, action) => {
   })
   const files = [...unrepeatedFiles, ...state.files]
 
-  return { ...state, files }
+  const filesConfig =
+    unrepeatedFiles.reduce((acc, file) => {
+      const initialFileConfig = {
+        [file.name]: INITIAL_FILE_PARAMS
+      }
+
+      return { ...acc, ...initialFileConfig }
+    }, { ...state.filesConfig })
+
+  return { ...state, files, filesConfig }
 }
 
 export const deleteFile = (state, action) => {
   const { fileName } = action.payload
   const files = state.files.filter(file => file.name !== fileName)
 
-  return { ...state, files }
+  const filesConfig = Object.keys(state.filesConfig)
+    .filter(key => key !== fileName)
+    .reduce((acc, key) => {
+      return { ...acc, [key]: state.filesConfig[key] }
+    }, {})
+
+  return { ...state, files, filesConfig }
 }
