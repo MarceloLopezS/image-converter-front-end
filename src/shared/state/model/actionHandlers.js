@@ -40,3 +40,22 @@ export const deleteFile = (state, action) => {
 
   return { ...state, files, filesConfig }
 }
+
+export const setFilesOutputFormat = (state, action) => {
+  const { filesOutputConfig } = action.payload
+
+  const updatedConfigs = filesOutputConfig.map(fileOutputConfig => {
+    return {
+      [fileOutputConfig.fileName]: {
+        ...state.filesConfig[fileOutputConfig.fileName],
+        outputFormat: fileOutputConfig.outputFormat
+      }
+    }
+  })
+
+  const filesConfig = updatedConfigs.reduce((acc, fileConfig) => {
+    return { ...acc, ...fileConfig }
+  }, state.filesConfig)
+
+  return { ...state, filesConfig }
+}
