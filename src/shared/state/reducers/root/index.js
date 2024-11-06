@@ -1,5 +1,5 @@
-import { TOGGLE_THEME, ADD_FILES, DELETE_FILE } from "../../config/actions"
-import { toggleTheme, addFiles, deleteFile } from "../../model/actionHandlers"
+import { TOGGLE_THEME, ADD_FILES, DELETE_FILE, SET_FILES_OUTPUT_FORMAT } from "../../config/actions"
+import { toggleTheme, addFiles, deleteFile, setFilesOutputFormat } from "../../model/actionHandlers"
 
 const rootReducer = (state, action) => {
   switch (action.type) {
@@ -9,6 +9,8 @@ const rootReducer = (state, action) => {
       return addFiles(state, action)
     case DELETE_FILE:
       return deleteFile(state, action)
+    case SET_FILES_OUTPUT_FORMAT:
+      return setFilesOutputFormat(state, action)
     default:
       console.error(`Unknown action: ${action.type}`)
       return state
