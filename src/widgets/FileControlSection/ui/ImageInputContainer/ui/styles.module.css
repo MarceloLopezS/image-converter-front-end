@@ -72,6 +72,8 @@
     var(--bg-theme) 80%,
     var(--clr-accent-theme) 20%
   );
+  transition-property: background-color;
+  transition-duration: var(--animation-duration-300);
 }
 
 .dropzone-active > svg {
