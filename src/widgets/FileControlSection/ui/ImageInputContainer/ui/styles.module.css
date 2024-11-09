@@ -65,6 +65,20 @@
   background-color: var(--bg-btn-hover);
 }
 
+.dropzone-active {
+  color: var(--clr-secondary-text);
+  background-color: color-mix(
+    in oklab,
+    var(--bg-theme) 80%,
+    var(--clr-accent-theme) 20%
+  );
+}
+
+.dropzone-active > svg {
+  width: 3.15em;
+  height: 3.15em;
+}
+
 .file-control__files-container {
   --_border: 1px solid var(--clr-accent-theme);
   --_border-radius: 0.5em;
