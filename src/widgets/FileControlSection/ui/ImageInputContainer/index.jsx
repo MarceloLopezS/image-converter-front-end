@@ -6,10 +6,11 @@ import {
   handleInvalidFileInputMessage
 } from "@shared/utils/functions"
 import FileInput from "@shared/ui/FileInput"
+import FileDropZone from "@shared/ui/FileDropZone"
 import FileSVG from "@shared/ui/SVGs/File"
-import styles from "./ui/styles.module.css"
 import File from "@entities/File"
 import AllFilesOutputSelect from "./ui/AllFilesOutputSelect"
+import styles from "./ui/styles.module.css"
 
 const ACCEPTED_FILES = ["image/png", "image/jpeg", "image/webp"]
 const OUTPUT_OPTIONS = ["png", "jpeg", "webp"]
@@ -21,7 +22,7 @@ const ImageInputContainer = () => {
     handleInvalidFileInputMessage(ACCEPTED_FILES)
   )
 
-  const handleFileChange = () => {
+  const handleInputChange = () => {
     const isFileInputValid = fileInputHandler.validate()
 
     if (!isFileInputValid) return
@@ -29,6 +30,14 @@ const ImageInputContainer = () => {
     dispatch({
       type: ADD_FILES,
       payload: { selectedFiles: fileInputHandler.inputRef.current.files }
+    })
+    return
+  }
+
+  const handleFileDrop = files => {
+    dispatch({
+      type: ADD_FILES,
+      payload: { selectedFiles: files }
     })
     return
   }
@@ -44,7 +53,7 @@ const ImageInputContainer = () => {
               fileTypeIndicator={<FileSVG />}
               inputDescription="Add more files"
               acceptedFileTypes={ACCEPTED_FILES}
-              onChange={handleFileChange}
+              onChange={handleInputChange}
               multiple
             />
           </section>
@@ -75,21 +84,18 @@ const ImageInputContainer = () => {
           </section>
         </section>
       ) : (
-        <section className={styles["file-control__file-input-container"]}>
-          {!fileInputHandler.isValid && (
-            <div>{fileInputHandler.errorMessage}</div>
-          )}
-          <FileInput
-            ref={fileInputHandler.inputRef}
-            className={styles["file-input"]}
-            fileTypeIndicator={<FileSVG />}
-            inputDescription="Choose files"
-            acceptedFileTypes={ACCEPTED_FILES}
-            onChange={handleFileChange}
-            multiple
-          />
-          <p className="text-secondary">Or drop them here. Max size: 10MB.</p>
-        </section>
+        <FileDropZone
+          classNames={{
+            container: styles["file-control__file-input-container"],
+            containerOnDragOver: styles["dropzone-active"],
+            inputButton: styles["file-input"]
+          }}
+          acceptedMIMETypes={ACCEPTED_FILES}
+          fileTypeIndicator={<FileSVG />}
+          filesValidateFn={isFileInputValid(ACCEPTED_FILES)}
+          errorMessageHandler={handleInvalidFileInputMessage(ACCEPTED_FILES)}
+          onFileChange={handleFileDrop}
+        />
       )}
     </section>
   )
