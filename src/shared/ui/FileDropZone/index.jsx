@@ -1,9 +1,16 @@
 import { useRef, useState } from "react"
+import { formatBytes } from "@shared/utils/functions"
 import FileInput from "@shared/ui/FileInput"
 
 const FileDropZone = ({
-  classNames = { container: "", containerOnDragOver: "", inputButton: "" },
+  classNames = {
+    container: "",
+    containerOnDragOver: "",
+    inputButton: "",
+    errorContainer: ""
+  },
   acceptedMIMETypes = ["image"],
+  maxFileSizeBytes = 10 * 1024 * 1024,
   fileTypeIndicator = <></>,
   filesValidateFn = files => true,
   errorMessageHandler = files => "",
@@ -54,7 +61,7 @@ const FileDropZone = ({
       onDragOver={e => e.preventDefault()}
       onDrop={onDrop}
     >
-      {error && <div>{error}</div>}
+      {error && <div className={classNames.errorContainer}>{error}</div>}
       {isDragingOver ? (
         fileTypeIndicator
       ) : (
@@ -68,7 +75,9 @@ const FileDropZone = ({
             onChange={onChange}
             multiple
           />
-          <p className="text-secondary">Or drop them here. Max size: 10MB.</p>
+          <p className="text-secondary">
+            Or drop them here. Max size: {formatBytes(maxFileSizeBytes)}
+          </p>
         </>
       )}
     </section>

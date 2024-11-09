@@ -91,6 +91,7 @@ const ImageInputContainer = () => {
             inputButton: styles["file-input"]
           }}
           acceptedMIMETypes={ACCEPTED_FILES}
+          maxFileSizeBytes={10 * 1024 * 1024}
           fileTypeIndicator={<FileSVG />}
           filesValidateFn={isFileInputValid(ACCEPTED_FILES)}
           errorMessageHandler={handleInvalidFileInputMessage(ACCEPTED_FILES)}
