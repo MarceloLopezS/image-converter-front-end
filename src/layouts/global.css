@@ -190,6 +190,10 @@ button {
 
 /* Utility Classes */
 
+.align-items-center {
+  align-items: center;
+}
+
 .content-wrapper {
   --_max-width: 1920px;
   --_inline-gap: var(--size-10);
