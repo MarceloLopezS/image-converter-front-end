@@ -5,6 +5,8 @@
   align-items: center;
   gap: var(--_gap);
   padding: 0.5em;
+  transition: background-color var(--animation-duration-500)
+    var(--default-animation-timing-function);
 }
 
 .file-item__info {
