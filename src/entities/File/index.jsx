@@ -1,12 +1,17 @@
 import { dispatch } from "@shared/state/store"
-import { DELETE_FILE } from "@shared/state/config/actions"
+import {
+  DELETE_FILE,
+  SET_CURRENT_FILE_TO_CONFIG
+} from "@shared/state/config/actions"
 import { formatBytes } from "@shared/utils/functions"
 import DeleteSVG from "@shared/ui/SVGs/Delete"
 import SettingsSVG from "@shared/ui/SVGs/Settings"
-import styles from "./ui/styles.module.css"
 import FileOutputSelect from "./ui/FileOutputSelect"
+import styles from "./ui/styles.module.css"
 
-const handleSettingsClick = event => {} // TODO
+const handleSettingsClick = fileName => () => {
+  dispatch({ type: SET_CURRENT_FILE_TO_CONFIG, payload: { fileName } })
+}
 
 const handleDeleteClick = fileName => () => {
   dispatch({ type: DELETE_FILE, payload: { fileName } })
@@ -29,7 +34,7 @@ const File = ({ inputFile, outputOptions, className }) => {
             outputOptions={outputOptions}
           />
         </div>
-        <button onClick={handleSettingsClick} type="button">
+        <button onClick={handleSettingsClick(inputFile.name)} type="button">
           <SettingsSVG />
         </button>
         <button onClick={handleDeleteClick(inputFile.name)} type="button">
