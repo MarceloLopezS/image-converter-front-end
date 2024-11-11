@@ -59,3 +59,12 @@ export const setFilesOutputFormat = (state, action) => {
 
   return { ...state, filesConfig }
 }
+
+export const setCurrentFileToConfig = (state, action) => {
+  const { fileName } = action.payload
+  const currentFileToConfig = fileName === state.currentFileToConfig
+    ? null
+    : fileName
+
+  return { ...state, currentFileToConfig }
+}
