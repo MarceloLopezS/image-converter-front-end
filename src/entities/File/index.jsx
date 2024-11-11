@@ -17,10 +17,11 @@ const handleDeleteClick = fileName => () => {
   dispatch({ type: DELETE_FILE, payload: { fileName } })
 }
 
-const File = ({ inputFile, outputOptions, className }) => {
+const File = ({ inputFile, outputOptions, className, ...attributes }) => {
   return (
     <section
       className={`${styles["file-item"]}${className ? " " + className : ""}`}
+      {...attributes}
     >
       <section className={styles["file-item__info"]}>
         <p>{inputFile.name}</p>
