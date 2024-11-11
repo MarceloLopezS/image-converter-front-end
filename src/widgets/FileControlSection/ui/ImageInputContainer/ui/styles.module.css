@@ -56,6 +56,23 @@
   height: 1em;
 }
 
+.settings-btn {
+  display: flex;
+  color: var(--clr-theme);
+  transition: color var(--animation-duration-300)
+    var(--default-animation-timing-function);
+}
+
+.settings-btn:hover,
+.settings-btn:focus-visible {
+  color: var(--clr-accent-theme);
+}
+
+.settings-btn svg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
 .file-input:hover,
 .file-input:focus-within,
 .add-more-files-input:hover,
