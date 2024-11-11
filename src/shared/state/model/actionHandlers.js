@@ -38,7 +38,11 @@ export const deleteFile = (state, action) => {
       return { ...acc, [key]: state.filesConfig[key] }
     }, {})
 
-  return { ...state, files, filesConfig }
+  const currentFileToConfig = state.currentFileToConfig === fileName
+    ? null
+    : state.currentFileToConfig
+
+  return { ...state, files, filesConfig, currentFileToConfig }
 }
 
 export const setFilesOutputFormat = (state, action) => {
