@@ -1,5 +1,8 @@
 import { dispatch, useStoreData } from "@shared/state/store"
-import { ADD_FILES } from "@shared/state/config/actions"
+import {
+  ADD_FILES,
+  SET_CURRENT_FILE_TO_CONFIG
+} from "@shared/state/config/actions"
 import { useInputValidationHandler } from "@shared/ui/Form"
 import {
   isFileInputValid,
@@ -8,6 +11,7 @@ import {
 import FileInput from "@shared/ui/FileInput"
 import FileDropZone from "@shared/ui/FileDropZone"
 import FileSVG from "@shared/ui/SVGs/File"
+import SettingsSVG from "@shared/ui/SVGs/Settings"
 import File from "@entities/File"
 import AllFilesOutputSelect from "./ui/AllFilesOutputSelect"
 import styles from "./ui/styles.module.css"
@@ -15,8 +19,13 @@ import styles from "./ui/styles.module.css"
 const ACCEPTED_FILES = ["image/png", "image/jpeg", "image/webp"]
 const OUTPUT_OPTIONS = ["png", "jpeg", "webp"]
 
+const handleAllFilesSettingsClick = () => {
+  dispatch({ type: SET_CURRENT_FILE_TO_CONFIG, payload: { fileName: null } })
+}
+
 const ImageInputContainer = () => {
   const files = useStoreData(state => state.files)
+  const currentFileToConfig = useStoreData(state => state.currentFileToConfig)
   const fileInputHandler = useInputValidationHandler(
     isFileInputValid(ACCEPTED_FILES),
     handleInvalidFileInputMessage(ACCEPTED_FILES)
@@ -63,12 +72,15 @@ const ImageInputContainer = () => {
                 inputFile={file}
                 outputOptions={OUTPUT_OPTIONS}
                 className={styles["file-control__file-item"]}
+                data-current-file-to-config={
+                  currentFileToConfig === file.name ? true : null
+                }
                 key={file.name}
               />
             ))}
           </section>
           <section className={styles["file-control__output-actions"]}>
-            <div className="flex gap-50">
+            <div className="flex gap-50 align-items-center">
               <label htmlFor="all-files-output">
                 All {`(${files.length})`} output:
               </label>
@@ -76,6 +88,12 @@ const ImageInputContainer = () => {
                 outputOptions={OUTPUT_OPTIONS}
                 fileNames={files.map(file => file.name)}
               />
+              <button
+                className={styles["settings-btn"]}
+                onClick={handleAllFilesSettingsClick}
+              >
+                <SettingsSVG />
+              </button>
             </div>
             <button className={styles["file-control__submit"]} type="button">
               Convert
