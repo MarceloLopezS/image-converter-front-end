@@ -168,6 +168,14 @@ button {
   background-color: var(--bg-theme);
 }
 
+[data-current-file-to-config] {
+  background-color: color-mix(
+    in oklab,
+    var(--clr-accent-theme) 20%,
+    var(--bg-theme) 80%
+  );
+}
+
 ::-webkit-scrollbar {
   width: 0.2em;
 }
