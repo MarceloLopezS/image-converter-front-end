@@ -243,6 +243,8 @@ button {
 .text-secondary {
   font-size: var(--fs-secondary);
   color: var(--clr-secondary-text);
+  transition: color var(--animation-duration-300)
+    var(--default-animation-timing-function);
 }
 
 .visually-hidden {
