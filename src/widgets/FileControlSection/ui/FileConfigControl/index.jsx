@@ -17,7 +17,7 @@ const FileConfigControl = () => {
       >
         <p>
           {filesLength > 0
-            ? (currentFileToConfig && `${currentFileToConfig} settings:`) ||
+            ? (currentFileToConfig && `Settings for ${currentFileToConfig}:`) ||
               `Settings for all (${filesLength}) files:`
             : "Settings:"}
         </p>
