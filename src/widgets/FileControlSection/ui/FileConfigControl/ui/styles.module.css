@@ -1,0 +1,26 @@
+.file-config-container {
+  --_container-border: var(--_children-border-width) solid
+    var(--clr-accent-theme);
+
+  display: flex;
+  flex-direction: column;
+  border: var(--_container-border);
+  border-radius: var(--_children-border-radius);
+}
+
+.file-config__header {
+  display: flex;
+  align-items: center;
+  padding: var(--_children-header-block-padding) 1em;
+  border-block-end: var(--_container-border);
+  border-start-start-radius: var(--_children-border-radius);
+  border-start-end-radius: var(--_children-border-radius);
+  transition: background-color var(--animation-duration-300)
+    var(--default-animation-timing-function);
+}
+
+.file-config__body {
+  flex-grow: 1;
+  display: grid;
+  padding: 1em;
+}
