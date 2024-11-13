@@ -28,7 +28,7 @@
     var(--clr-accent-theme) 4%
   );
   border: 2px dashed var(--clr-accent-theme);
-  border-radius: 0.5em;
+  border-radius: var(--_children-border-radius);
   transition: background-color var(--animation-duration-500)
     var(--default-animation-timing-function);
 }
@@ -112,8 +112,7 @@
 }
 
 .add-more-files-input {
-  height: 2.5em;
-  padding-inline: 1em;
+  padding: var(--_children-header-block-padding) 1em;
   border-start-start-radius: var(--_border-radius);
   border-start-end-radius: var(--_border-radius);
 }
@@ -124,6 +123,12 @@
   border: var(--_border);
   border-start-end-radius: var(--_border-radius);
   overflow-y: auto;
+}
+
+@media (max-width: 49rem) {
+  .file-control__files-preview {
+    flex-grow: 1;
+  }
 }
 
 .file-control__file-item:not(:last-child) {
