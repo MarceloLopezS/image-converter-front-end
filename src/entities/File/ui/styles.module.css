@@ -26,7 +26,6 @@
   background-color: transparent;
   color: var(--clr-theme);
   border: none;
-  outline: 1px solid transparent;
   transition: color var(--animation-duration-300)
     var(--default-animation-timing-function);
 }
