@@ -24,3 +24,10 @@
   display: grid;
   padding: 1em;
 }
+
+.file-config__body > p {
+  max-width: 50ch;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+}
