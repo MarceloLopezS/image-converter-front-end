@@ -1,11 +1,18 @@
 import { useStoreData } from "@shared/state/store"
+import { getFilesSettingsWarning } from "@shared/utils/functions"
 import styles from "./ui/styles.module.css"
 
 const FileConfigControl = () => {
   const files = useStoreData(state => state.files)
+  const filesConfig = useStoreData(state => state.filesConfig)
   const currentFileToConfig = useStoreData(state => state.currentFileToConfig)
 
   const filesLength = files.length
+  const warningMessage = getFilesSettingsWarning(
+    filesLength,
+    filesConfig,
+    currentFileToConfig
+  )
 
   return (
     <section className={styles["file-config-container"]}>
@@ -23,8 +30,8 @@ const FileConfigControl = () => {
         </p>
       </section>
       <section className={styles["file-config__body"]}>
-        {filesLength === 0 ? (
-          <p className="text-center">Choose some files first.</p>
+        {warningMessage ? (
+          <p className="text-secondary">{warningMessage}</p>
         ) : (
           <section></section>
         )}
