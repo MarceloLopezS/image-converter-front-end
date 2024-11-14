@@ -150,8 +150,9 @@ a {
 }
 
 button {
-  border: none;
   background-color: transparent;
+  border: none;
+  outline: 1px solid transparent;
   cursor: pointer;
 }
 
