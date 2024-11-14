@@ -76,3 +76,29 @@ export const handleInvalidFileInputMessage = validMIMETypes => files => {
     }
   }
 }
+
+export const getFilesSettingsWarning = (
+  filesLength,
+  filesConfig,
+  currentFileToConfig
+) => {
+  const outputFormats = new Set(
+    Object.values(filesConfig).map(fileConfig => fileConfig.outputFormat)
+  )
+  const isSameOutputFormat =
+    outputFormats.size === 1 && Array.from(outputFormats)[0] !== null
+  const currentFileOutputFormat = filesConfig[currentFileToConfig]?.outputFormat
+
+  if (filesLength === 0) return "Choose some files first."
+
+  if (!isSameOutputFormat && !currentFileToConfig) {
+    return "Select a common output format for all files or access "
+      + "each file settings."
+  }
+
+  if (currentFileToConfig && !currentFileOutputFormat) {
+    return "Select an output format for the current file."
+  }
+
+  return null
+}
