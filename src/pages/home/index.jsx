@@ -7,8 +7,8 @@ const Home = () => {
     <>
       <Navbar />
       <Main>
-        <h1 class="fs-title fw-bold text-center">Image converter</h1>
-        <p class="text-center">Convert and optimize images</p>
+        <h1 className="fs-title fw-bold text-center">Image converter</h1>
+        <p className="text-center">Convert and optimize images</p>
         <FileControlSection />
       </Main>
     </>
