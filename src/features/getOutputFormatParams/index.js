@@ -1,10 +1,13 @@
 import requestOutputFormatParams from "./api"
 
 const getOutputFormatParams = async (outputFormat) => {
+  const formData = new FormData()
+  formData.append("output_format", outputFormat)
+
   const fetchOptions = {
     method: "post",
     credentials: "include",
-    body: { output_format: outputFormat }
+    body: formData
   }
 
   const response = await requestOutputFormatParams(fetchOptions)
