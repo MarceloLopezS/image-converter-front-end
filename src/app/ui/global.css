@@ -186,7 +186,6 @@ button {
 
 ::-webkit-scrollbar-track {
   background: transparent;
-  margin-block: 0.15em;
 }
 
 ::-webkit-scrollbar-thumb {
