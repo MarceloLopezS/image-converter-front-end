@@ -97,7 +97,6 @@ html:focus-within {
 }
 
 body {
-  min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
 }
@@ -131,8 +130,6 @@ picture {
 /* GENERAL STYLING */
 
 body {
-  display: flex;
-  flex-direction: column;
   font-family: var(--ff-primary);
   font-size: var(--fs-body);
   font-weight: var(--fw-regular);
@@ -154,6 +151,12 @@ button {
   border: none;
   outline: 1px solid transparent;
   cursor: pointer;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 [data-theme="dark"] {
