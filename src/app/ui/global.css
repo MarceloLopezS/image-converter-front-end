@@ -153,6 +153,10 @@ button {
   cursor: pointer;
 }
 
+input {
+  accent-color: var(--clr-accent-theme);
+}
+
 #root {
   display: flex;
   flex-direction: column;
