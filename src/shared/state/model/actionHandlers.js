@@ -85,3 +85,21 @@ export const setFileOuputParams = (state, action) => {
 
   return { ...state, filesConfig }
 }
+
+export const updateFileOuputParams = (state, action) => {
+  const { fileName, outputParams } = action.payload
+
+  const updatedOutputParams = {
+    ...state.filesConfig[fileName].outputParams,
+    ...outputParams
+  }
+
+  const fileConfig = {
+    ...state.filesConfig[fileName],
+    outputParams: updatedOutputParams
+  }
+
+  const filesConfig = { ...state.filesConfig, [fileName]: fileConfig }
+
+  return { ...state, filesConfig }
+}
