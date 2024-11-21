@@ -3,7 +3,12 @@ import { getPreferedColorScheme } from "../../utils/functions"
 const INITIAL_STATE = {
   theme: getPreferedColorScheme(),
   files: [],
-  filesConfig: {},
+  filesConfig: {
+    // [fileName]: {
+    //   outputFormat: null | string,
+    //   outputParams: {}
+    // }
+  },
   currentFileToConfig: null
 }
 
