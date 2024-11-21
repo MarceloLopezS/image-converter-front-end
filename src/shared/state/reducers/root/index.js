@@ -3,14 +3,16 @@ import {
   ADD_FILES,
   DELETE_FILE,
   SET_FILES_OUTPUT_FORMAT,
-  SET_CURRENT_FILE_TO_CONFIG
+  SET_CURRENT_FILE_TO_CONFIG,
+  SET_FILE_OUTPUT_PARAMS
 } from "../../config/actions"
 import {
   toggleTheme,
   addFiles,
   deleteFile,
   setFilesOutputFormat,
-  setCurrentFileToConfig
+  setCurrentFileToConfig,
+  setFileOuputParams
 } from "../../model/actionHandlers"
 
 const rootReducer = (state, action) => {
@@ -25,6 +27,8 @@ const rootReducer = (state, action) => {
       return setFilesOutputFormat(state, action)
     case SET_CURRENT_FILE_TO_CONFIG:
       return setCurrentFileToConfig(state, action)
+    case SET_FILE_OUTPUT_PARAMS:
+      return setFileOuputParams(state, action)
     default:
       console.error(`Unknown action: ${action.type}`)
       return state
