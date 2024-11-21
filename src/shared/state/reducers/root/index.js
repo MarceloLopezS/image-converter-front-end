@@ -4,7 +4,8 @@ import {
   DELETE_FILE,
   SET_FILES_OUTPUT_FORMAT,
   SET_CURRENT_FILE_TO_CONFIG,
-  SET_FILE_OUTPUT_PARAMS
+  SET_FILE_OUTPUT_PARAMS,
+  UPDATE_FILE_OUTPUT_PARAMS
 } from "../../config/actions"
 import {
   toggleTheme,
@@ -12,7 +13,8 @@ import {
   deleteFile,
   setFilesOutputFormat,
   setCurrentFileToConfig,
-  setFileOuputParams
+  setFileOuputParams,
+  updateFileOuputParams
 } from "../../model/actionHandlers"
 
 const rootReducer = (state, action) => {
@@ -29,6 +31,8 @@ const rootReducer = (state, action) => {
       return setCurrentFileToConfig(state, action)
     case SET_FILE_OUTPUT_PARAMS:
       return setFileOuputParams(state, action)
+    case UPDATE_FILE_OUTPUT_PARAMS:
+      return updateFileOuputParams(state, action)
     default:
       console.error(`Unknown action: ${action.type}`)
       return state
