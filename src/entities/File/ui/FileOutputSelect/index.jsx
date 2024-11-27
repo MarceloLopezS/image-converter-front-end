@@ -1,6 +1,12 @@
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
+import { useQuery } from "@tanstack/react-query"
 import { dispatch, useStoreData } from "@shared/state/store"
-import { SET_FILES_OUTPUT_FORMAT } from "@shared/state/config/actions"
+import {
+  SET_FILE_OUTPUT_PARAMS,
+  SET_FILES_OUTPUT_FORMAT
+} from "@shared/state/config/actions"
+import { API_ENDPOINT } from "@shared/utils/constants"
+import getOutputFormatParams from "@features/getOutputFormatParams"
 
 const FileOutputSelect = ({ fileName, outputOptions }) => {
   const outputSelectRef = useRef(null)
@@ -19,6 +25,27 @@ const FileOutputSelect = ({ fileName, outputOptions }) => {
       payload: { filesOutputConfig: [fileConfig] }
     })
   }
+
+  const { data, error } = useQuery({
+    queryKey: [API_ENDPOINT.OUTPUT_FORMAT_PARAMS, fileFormat],
+    queryFn: () => getOutputFormatParams(fileFormat),
+    enabled: !!fileFormat,
+    staleTime: Infinity
+  })
+
+  useEffect(() => {
+    if (!data || error) return
+
+    const serverOutputParams = data.data.output_params
+    const defaultOutputParams = serverOutputParams.reduce((acc, param) => {
+      return { ...acc, [param.name]: param.default }
+    }, {})
+
+    dispatch({
+      type: SET_FILE_OUTPUT_PARAMS,
+      payload: { fileName, outputParams: defaultOutputParams }
+    })
+  }, [data])
 
   return (
     <select
