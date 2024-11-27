@@ -8,7 +8,7 @@ import {
 } from "@shared/state/config/actions"
 import getOutputFormatParams from "@features/getOutputFormatParams"
 
-const FileOutputSelect = ({ fileName, outputOptions }) => {
+const FileOutputFormatSelect = ({ fileName, outputOptions }) => {
   const outputSelectRef = useRef(null)
   const fileFormat = useStoreData(
     state => state.filesConfig[fileName].outputFormat
@@ -65,4 +65,4 @@ const FileOutputSelect = ({ fileName, outputOptions }) => {
   )
 }
 
-export default FileOutputSelect
+export default FileOutputFormatSelect
