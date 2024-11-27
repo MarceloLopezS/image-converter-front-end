@@ -73,7 +73,7 @@ export const setCurrentFileToConfig = (state, action) => {
   return { ...state, currentFileToConfig }
 }
 
-export const setFileOuputParams = (state, action) => {
+export const setFileOutputParams = (state, action) => {
   const { fileName, outputParams } = action.payload
 
   const fileConfig = {
@@ -86,20 +86,22 @@ export const setFileOuputParams = (state, action) => {
   return { ...state, filesConfig }
 }
 
-export const updateFileOuputParams = (state, action) => {
-  const { fileName, outputParams } = action.payload
+export const setFilesSharedOutputParams = (state, action) => {
+  const { outputParams } = action.payload
 
-  const updatedOutputParams = {
-    ...state.filesConfig[fileName].outputParams,
-    ...outputParams
+  const filesSharedConfigCache = {
+    ...state.filesSharedConfigCache, outputParams
   }
 
-  const fileConfig = {
-    ...state.filesConfig[fileName],
-    outputParams: updatedOutputParams
-  }
+  const filesConfig =
+    Object.entries(state.filesConfig)
+      .reduce((acc, [fileName, config]) => {
+        const updatedConfig = {
+          ...config, outputParams
+        }
 
-  const filesConfig = { ...state.filesConfig, [fileName]: fileConfig }
+        return { ...acc, [fileName]: updatedConfig }
+      }, {})
 
-  return { ...state, filesConfig }
+  return { ...state, filesConfig, filesSharedConfigCache }
 }
