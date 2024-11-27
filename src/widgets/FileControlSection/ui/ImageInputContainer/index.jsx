@@ -14,6 +14,7 @@ import FileSVG from "@shared/ui/SVGs/File"
 import SettingsSVG from "@shared/ui/SVGs/Settings"
 import File from "@entities/File"
 import AllFilesOutputSelect from "./ui/AllFilesOutputSelect"
+import FileOutputSelect from "./ui/FileOutputSelect"
 import styles from "./ui/styles.module.css"
 
 const ACCEPTED_FILES = ["image/png", "image/jpeg", "image/webp"]
@@ -70,7 +71,12 @@ const ImageInputContainer = () => {
             {files.map(file => (
               <File
                 inputFile={file}
-                outputOptions={OUTPUT_OPTIONS}
+                outputFormatSelect={
+                  <FileOutputSelect
+                    fileName={file.name}
+                    outputOptions={OUTPUT_OPTIONS}
+                  />
+                }
                 className={styles["file-control__file-item"]}
                 data-current-file-to-config={
                   currentFileToConfig === file.name ? true : null
