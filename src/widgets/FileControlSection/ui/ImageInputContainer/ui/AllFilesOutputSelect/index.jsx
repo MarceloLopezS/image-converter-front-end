@@ -1,11 +1,11 @@
 import { useRef, useEffect } from "react"
+import { useQuery } from "@tanstack/react-query"
+import { API_ENDPOINT } from "@shared/utils/constants"
 import { dispatch, useStoreData } from "@shared/state/store"
 import {
   SET_FILES_OUTPUT_FORMAT,
   SET_FILES_SHARED_OUTPUT_PARAMS
 } from "@shared/state/config/actions"
-import { useQuery } from "@tanstack/react-query"
-import { API_ENDPOINT } from "@shared/utils/constants"
 import getOutputFormatParams from "@features/getOutputFormatParams"
 
 const AllFilesOutputSelect = ({ outputOptions, fileNames }) => {
