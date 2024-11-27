@@ -13,8 +13,8 @@ import FileDropZone from "@shared/ui/FileDropZone"
 import FileSVG from "@shared/ui/SVGs/File"
 import SettingsSVG from "@shared/ui/SVGs/Settings"
 import File from "@entities/File"
-import AllFilesOutputSelect from "./ui/AllFilesOutputSelect"
-import FileOutputSelect from "./ui/FileOutputSelect"
+import FileOutputFormatSelect from "./ui/FileOutputFormatSelect"
+import AllFilesOutputFormatSelect from "./ui/AllFilesOutputFormatSelect"
 import styles from "./ui/styles.module.css"
 
 const ACCEPTED_FILES = ["image/png", "image/jpeg", "image/webp"]
@@ -72,7 +72,7 @@ const ImageInputContainer = () => {
               <File
                 inputFile={file}
                 outputFormatSelect={
-                  <FileOutputSelect
+                  <FileOutputFormatSelect
                     fileName={file.name}
                     outputOptions={OUTPUT_OPTIONS}
                   />
@@ -90,7 +90,7 @@ const ImageInputContainer = () => {
               <label htmlFor="all-files-output">
                 All {`(${files.length})`} output:
               </label>
-              <AllFilesOutputSelect
+              <AllFilesOutputFormatSelect
                 outputOptions={OUTPUT_OPTIONS}
                 fileNames={files.map(file => file.name)}
               />
