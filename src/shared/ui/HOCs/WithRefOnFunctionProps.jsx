@@ -4,7 +4,9 @@ const WithRefOnFunctionProps = ({ component, ...props }) => {
   const ref = useRef(null)
   const modProps = Object.fromEntries(
     Object.entries(props).map(([key, value]) =>
-      typeof value === "function" ? [key, () => value(ref)] : [key, value]
+      typeof value === "function"
+        ? [key, event => value(ref, event)]
+        : [key, value]
     )
   )
 
