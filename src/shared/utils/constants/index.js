@@ -3,7 +3,8 @@ export const API_ENDPOINT = {
   OUTPUT_FORMAT_PARAMS: "/output-format-params"
 }
 export const INITIAL_FILE_PARAMS = {
-  outputFormat: null
+  outputFormat: null,
+  outputParams: null
 }
 export const THEME = "theme"
 export const DARK = "dark"
