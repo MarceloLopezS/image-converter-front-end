@@ -1,15 +1,18 @@
 import { getPreferedColorScheme } from "../../utils/functions"
 
 const INITIAL_STATE = {
-  theme: getPreferedColorScheme(),
-  files: [],
+  theme: getPreferedColorScheme(), // string
+  files: [], // File[]
+  currentFileToConfig: null, // null | string
   filesConfig: {
     // [fileName]: {
     //   outputFormat: null | string,
-    //   outputParams: {}
+    //   outputParams: null | { [param1]: any, [param2]: any, ... }
     // }
   },
-  currentFileToConfig: null
+  filesSharedConfigCache: {
+    // outputParams: null | { [param1]: any, [param2]: any, ... }
+  }
 }
 
 export default INITIAL_STATE
