@@ -1,0 +1,13 @@
+.loader {
+  width: 2em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 0.3em solid;
+  border-color: var(--clr-accent-theme) var(--bg-theme);
+  animation: l1 1s infinite;
+}
+@keyframes l1 {
+  to {
+    transform: rotate(0.5turn);
+  }
+}
