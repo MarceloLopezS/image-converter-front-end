@@ -221,12 +221,12 @@ input {
   display: flex;
 }
 
-.flex-column {
-  flex-direction: column;
+.flex-grow {
+  flex-grow: 1;
 }
 
-.gap-50 {
-  gap: 0.5em;
+.flex-column {
+  flex-direction: column;
 }
 
 @media (max-width: 49rem) {
@@ -241,6 +241,18 @@ input {
 
 .fw-bold {
   font-weight: bold;
+}
+
+.gap-50 {
+  gap: 0.5em;
+}
+
+.grid {
+  display: grid;
+}
+
+.place-items-center {
+  place-items: center;
 }
 
 .text-center {
