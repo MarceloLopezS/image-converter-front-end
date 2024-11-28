@@ -22,7 +22,6 @@
 .file-config__body {
   flex-grow: 1;
   display: grid;
-  padding: 1em;
 }
 
 .file-config__body > p {
