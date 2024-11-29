@@ -17,8 +17,8 @@ import FileOutputFormatSelect from "./ui/FileOutputFormatSelect"
 import AllFilesOutputFormatSelect from "./ui/AllFilesOutputFormatSelect"
 import styles from "./ui/styles.module.css"
 
-const ACCEPTED_FILES = ["image/png", "image/jpeg", "image/webp"]
-const OUTPUT_OPTIONS = ["png", "jpeg", "webp"]
+const ALLOWED_EXTENSIONS = ["ico", "jpg", "jpeg", "png", "webp"]
+const OUTPUT_OPTIONS = ["ico", "png", "jpeg", "webp"]
 
 const handleAllFilesSettingsClick = () => {
   dispatch({ type: SET_CURRENT_FILE_TO_CONFIG, payload: { fileName: null } })
@@ -28,8 +28,8 @@ const ImageInputContainer = () => {
   const files = useStoreData(state => state.files)
   const currentFileToConfig = useStoreData(state => state.currentFileToConfig)
   const fileInputHandler = useInputValidationHandler(
-    isFileInputValid(ACCEPTED_FILES),
-    handleInvalidFileInputMessage(ACCEPTED_FILES)
+    isFileInputValid(ALLOWED_EXTENSIONS),
+    handleInvalidFileInputMessage(ALLOWED_EXTENSIONS)
   )
 
   const handleInputChange = () => {
@@ -62,7 +62,7 @@ const ImageInputContainer = () => {
               className={styles["add-more-files-input"]}
               fileTypeIndicator={<FileSVG />}
               inputDescription="Add more files"
-              acceptedFileTypes={ACCEPTED_FILES}
+              acceptedFileTypes={ALLOWED_EXTENSIONS}
               onChange={handleInputChange}
               multiple
             />
@@ -114,11 +114,13 @@ const ImageInputContainer = () => {
             containerOnDragOver: styles["dropzone-active"],
             inputButton: styles["file-input"]
           }}
-          acceptedMIMETypes={ACCEPTED_FILES}
+          acceptedFileTypes={ALLOWED_EXTENSIONS.map(ext => `.${ext}`)}
           maxFileSizeBytes={10 * 1024 * 1024}
           fileTypeIndicator={<FileSVG />}
-          filesValidateFn={isFileInputValid(ACCEPTED_FILES)}
-          errorMessageHandler={handleInvalidFileInputMessage(ACCEPTED_FILES)}
+          filesValidateFn={isFileInputValid(ALLOWED_EXTENSIONS)}
+          errorMessageHandler={handleInvalidFileInputMessage(
+            ALLOWED_EXTENSIONS
+          )}
           onFileChange={handleFileDrop}
         />
       )}
