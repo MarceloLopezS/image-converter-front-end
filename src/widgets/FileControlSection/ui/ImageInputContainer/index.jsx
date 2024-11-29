@@ -28,7 +28,7 @@ const ImageInputContainer = () => {
   const files = useStoreData(state => state.files)
 
   const { data, status } = useQuery({
-    queryKey: [API_ENDPOINT.ALLOWED_EXTENSIONS],
+    queryKey: [API_ENDPOINT.ALLOWED_IO_PARAMS],
     queryFn: () => getAllowedIOParams(),
     staleTime: Infinity
   })
