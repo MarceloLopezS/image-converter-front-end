@@ -16,6 +16,14 @@ import styles from "./ui/styles.module.css"
 const DEFAULT_ERROR_MESSAGE =
   "There was a problem reaching the server. Please try again later."
 
+const handleFileDrop = files => {
+  dispatch({
+    type: ADD_FILES,
+    payload: { selectedFiles: files }
+  })
+  return
+}
+
 const ImageInputContainer = () => {
   const files = useStoreData(state => state.files)
 
@@ -27,14 +35,6 @@ const ImageInputContainer = () => {
 
   const allowedExtensions = data?.input?.file_extensions
   const outputOptions = data?.output?.file_formats
-
-  const handleFileDrop = files => {
-    dispatch({
-      type: ADD_FILES,
-      payload: { selectedFiles: files }
-    })
-    return
-  }
 
   if (status === "pending")
     return (
