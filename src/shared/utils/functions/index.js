@@ -44,6 +44,10 @@ export function formatBytes(bytes) {
 export const greaterThan = comparisonNumber =>
   value => value > comparisonNumber
 
+export const getFileExtension = fileName => {
+  return fileName.slice((fileName.lastIndexOf(".") - 1 >>> 0) + 2)
+}
+
 export const isFileInputValid = validMIMETypes => files => {
   const greaterThan10MB = greaterThan(10 * 1024 * 1024)
 
