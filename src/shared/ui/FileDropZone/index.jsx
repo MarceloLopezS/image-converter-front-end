@@ -1,5 +1,4 @@
 import { useRef, useState } from "react"
-import { formatBytes } from "@shared/utils/functions"
 import FileInput from "@shared/ui/FileInput"
 
 const FileDropZone = ({
@@ -10,7 +9,7 @@ const FileDropZone = ({
     errorContainer: ""
   },
   acceptedFileTypes = ["image"],
-  maxFileSizeBytes = 10 * 1024 * 1024,
+  indicationsMessage = "",
   fileTypeIndicator = <></>,
   filesValidateFn = files => true,
   errorMessageHandler = files => "",
@@ -82,9 +81,7 @@ const FileDropZone = ({
             onChange={onChange}
             multiple
           />
-          <p className="text-secondary">
-            Or drop them here. Max size: {formatBytes(maxFileSizeBytes)}
-          </p>
+          <p className="text-secondary">{indicationsMessage}</p>
         </>
       )}
     </section>
