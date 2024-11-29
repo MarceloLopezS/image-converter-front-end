@@ -47,6 +47,7 @@ const FileDropZone = ({
   }
 
   const onChange = () => {
+    setIsDragingOver(false)
     const files = fileInputRef.current.files
 
     if (!filesValidateFn(files)) {
