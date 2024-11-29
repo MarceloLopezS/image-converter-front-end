@@ -30,13 +30,18 @@ const FileDropZone = ({
 
   const onDrop = event => {
     event.preventDefault()
+    setIsDragingOver(false)
+
     const files = event.dataTransfer.items
       ? [...event.dataTransfer.items]
           .filter(item => item.kind === "file")
           .map(item => item.getAsFile())
       : [...event.dataTransfer.files]
 
-    if (!filesValidateFn(files)) return
+    if (!filesValidateFn(files)) {
+      setError(errorMessageHandler(files))
+      return
+    }
 
     onFileChange(files)
   }
@@ -46,6 +51,7 @@ const FileDropZone = ({
 
     if (!filesValidateFn(files)) {
       setError(errorMessageHandler(files))
+      return
     }
 
     onFileChange(files)
@@ -54,7 +60,7 @@ const FileDropZone = ({
   return (
     <section
       className={`${
-        isDragingOver && classNames.containerOnDragOver
+        isDragingOver ? classNames.containerOnDragOver : ""
       }${classNames.container ? " " + classNames.container : ""}`}
       onDragEnter={onDragEnter}
       onDragLeave={onDragLeave}
