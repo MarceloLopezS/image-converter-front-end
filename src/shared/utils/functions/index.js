@@ -65,19 +65,17 @@ export const isFileInputValid = allowedFileExtensions => files => {
   return true
 }
 
-export const handleInvalidFileInputMessage = validMIMETypes => files => {
+export const handleInvalidFileInputMessage = allowedFileExtensions => files => {
   const greaterThan10MB = greaterThan(10 * 1024 * 1024)
 
   for (let file of files) {
     if (greaterThan10MB(file.size)) {
-      console.log("Max size exceeded.");
-
       return "One or more files exceed the max permitted size."
     }
 
-    if (!validMIMETypes.includes(file.type)) {
-      console.log("Wrong file type", file.type);
-
+    if (!allowedFileExtensions.includes(
+      getFileExtension(file.name)
+    )) {
       return "One or more files don't have a permitted type or extension."
     }
   }
