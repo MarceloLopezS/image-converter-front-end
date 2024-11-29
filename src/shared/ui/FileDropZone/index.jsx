@@ -9,7 +9,7 @@ const FileDropZone = ({
     inputButton: "",
     errorContainer: ""
   },
-  acceptedMIMETypes = ["image"],
+  acceptedFileTypes = ["image"],
   maxFileSizeBytes = 10 * 1024 * 1024,
   fileTypeIndicator = <></>,
   filesValidateFn = files => true,
@@ -71,7 +71,7 @@ const FileDropZone = ({
             className={classNames.inputButton}
             fileTypeIndicator={fileTypeIndicator}
             inputDescription="Choose files"
-            acceptedFileTypes={acceptedMIMETypes}
+            acceptedFileTypes={acceptedFileTypes}
             onChange={onChange}
             multiple
           />
