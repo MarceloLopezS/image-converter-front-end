@@ -1,6 +1,6 @@
 export const API_URL = import.meta.env.VITE_API_URL
 export const API_ENDPOINT = {
-  ALLOWED_IO: "/allowed-io",
+  ALLOWED_IO_PARAMS: "/allowed-io-params",
   OUTPUT_FORMAT_PARAMS: "/output-format-params"
 }
 export const INITIAL_FILE_PARAMS = {
