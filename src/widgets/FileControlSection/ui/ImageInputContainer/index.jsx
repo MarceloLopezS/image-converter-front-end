@@ -4,7 +4,8 @@ import { ADD_FILES } from "@shared/state/config/actions"
 import { API_ENDPOINT } from "@shared/utils/constants"
 import {
   isFileInputValid,
-  handleInvalidFileInputMessage
+  handleInvalidFileInputMessage,
+  formatBytes
 } from "@shared/utils/functions"
 import FileDropZone from "@shared/ui/FileDropZone"
 import FileSVG from "@shared/ui/SVGs/File"
@@ -34,6 +35,7 @@ const ImageInputContainer = () => {
   })
 
   const allowedExtensions = data?.input?.file_extensions
+  const maxFileSizeBytes = data?.input?.max_file_size_bytes
   const outputOptions = data?.output?.file_formats
 
   if (status === "pending")
@@ -67,10 +69,18 @@ const ImageInputContainer = () => {
             inputButton: styles["file-input"]
           }}
           acceptedFileTypes={allowedExtensions.map(ext => `.${ext}`)}
-          maxFileSizeBytes={10 * 1024 * 1024}
+          indicationsMessage={
+            "Or drop them here. Max size: " + formatBytes(maxFileSizeBytes)
+          }
           fileTypeIndicator={<FileSVG />}
-          filesValidateFn={isFileInputValid(allowedExtensions)}
-          errorMessageHandler={handleInvalidFileInputMessage(allowedExtensions)}
+          filesValidateFn={isFileInputValid(
+            allowedExtensions,
+            maxFileSizeBytes
+          )}
+          errorMessageHandler={handleInvalidFileInputMessage(
+            allowedExtensions,
+            maxFileSizeBytes
+          )}
           onFileChange={handleFileDrop}
         />
       )}
