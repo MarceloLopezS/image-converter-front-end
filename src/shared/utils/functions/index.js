@@ -48,28 +48,33 @@ export const getFileExtension = fileName => {
   return fileName.slice((fileName.lastIndexOf(".") - 1 >>> 0) + 2)
 }
 
-export const isFileInputValid = allowedFileExtensions => files => {
-  const greaterThan10MB = greaterThan(10 * 1024 * 1024)
+export const isFileInputValid = (
+  allowedFileExtensions,
+  maxFileSizeBytes
+) => files => {
+  const greaterThanMaxSize = greaterThan(maxFileSizeBytes)
 
   if (files?.length <= 0) return false
 
   for (let file of files) {
-    if (greaterThan10MB(file.size)) return false
+    if (greaterThanMaxSize(file.size)) return false
 
     if (!allowedFileExtensions.includes(
       getFileExtension(file.name)
     )) return false
   }
 
-
   return true
 }
 
-export const handleInvalidFileInputMessage = allowedFileExtensions => files => {
-  const greaterThan10MB = greaterThan(10 * 1024 * 1024)
+export const handleInvalidFileInputMessage = (
+  allowedFileExtensions,
+  maxFileSizeBytes
+) => files => {
+  const greaterThanMaxSize = greaterThan(maxFileSizeBytes)
 
   for (let file of files) {
-    if (greaterThan10MB(file.size)) {
+    if (greaterThanMaxSize(file.size)) {
       return "One or more files exceed the max permitted size."
     }
 
