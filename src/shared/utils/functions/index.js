@@ -48,7 +48,7 @@ export const getFileExtension = fileName => {
   return fileName.slice((fileName.lastIndexOf(".") - 1 >>> 0) + 2)
 }
 
-export const isFileInputValid = validMIMETypes => files => {
+export const isFileInputValid = allowedFileExtensions => files => {
   const greaterThan10MB = greaterThan(10 * 1024 * 1024)
 
   if (files?.length <= 0) return false
@@ -56,7 +56,9 @@ export const isFileInputValid = validMIMETypes => files => {
   for (let file of files) {
     if (greaterThan10MB(file.size)) return false
 
-    if (!validMIMETypes.includes(file.type)) return false
+    if (!allowedFileExtensions.includes(
+      getFileExtension(file.name)
+    )) return false
   }
 
 
