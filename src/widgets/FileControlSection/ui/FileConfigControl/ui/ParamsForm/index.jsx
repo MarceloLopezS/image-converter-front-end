@@ -137,7 +137,17 @@ const ParamsForm = ({ fileName, serverOutputParams, ...attributes }) => {
                           component={
                             <select id={param.name} name={param.name}>
                               {param.options.map(option => (
-                                <option>{`${option}`}</option>
+                                <option key={`${option}`}>
+                                  {Array.isArray(option)
+                                    ? option.reduce(
+                                        (acc, dimension) =>
+                                          acc
+                                            ? `${acc} x ${dimension}`
+                                            : `${dimension}`,
+                                        null
+                                      )
+                                    : option}
+                                </option>
                               ))}
                             </select>
                           }
