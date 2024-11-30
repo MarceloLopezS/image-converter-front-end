@@ -8,6 +8,4 @@
   appearance: textfield;
   text-align: center;
   padding: 0.15em 0.25em;
-  border: 1px solid var(--clr-theme);
-  border-radius: 0.2em;
 }
