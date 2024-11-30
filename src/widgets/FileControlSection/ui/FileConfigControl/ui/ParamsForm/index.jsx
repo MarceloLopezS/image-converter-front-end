@@ -172,7 +172,7 @@ const ParamsForm = ({ fileName, serverOutputParams, ...attributes }) => {
             <button
               onClick={resetFieldsToDefault}
               className={styles["reset-btn"]}
-              type="submit"
+              type="button"
             >
               Reset to defaults
             </button>
