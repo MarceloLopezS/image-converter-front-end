@@ -7,8 +7,6 @@ const uploadFilesToConvert = async ({ files, filesConfig }) => {
   }
   formData.append("files_config", JSON.stringify(filesConfig))
 
-  console.log(formData.get("files_config"))
-
   const fetchOptions = {
     method: "post",
     credentials: "include",
