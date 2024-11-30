@@ -11,8 +11,9 @@ import styles from "./ui/styles.module.css"
 const handleFormSubmit = fileName => (ref, event) => {
   event.preventDefault()
 
-  const outputParams = [...ref.current.querySelectorAll("input")].reduce(
-    (acc, input) => {
+  const outputParams = [...ref.current.querySelectorAll("input")]
+    .filter(input => input.name)
+    .reduce((acc, input) => {
       const value =
         input.type === "checkbox"
           ? input.checked
@@ -23,9 +24,7 @@ const handleFormSubmit = fileName => (ref, event) => {
             : input.value
 
       return { ...acc, [input.name]: value }
-    },
-    {}
-  )
+    }, {})
 
   fileName
     ? dispatch({
