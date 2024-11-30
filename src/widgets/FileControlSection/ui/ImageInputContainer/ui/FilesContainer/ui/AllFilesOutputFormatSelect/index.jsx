@@ -50,7 +50,6 @@ const AllFilesOutputFormatSelect = ({ outputOptions, fileNames }) => {
     <select
       ref={selectOutputRef}
       onChange={handleOutputSelect}
-      id="all-files-output"
       value={
         outputFormats.size === 1 ? Array.from(outputFormats)[0] || "-" : "-"
       }

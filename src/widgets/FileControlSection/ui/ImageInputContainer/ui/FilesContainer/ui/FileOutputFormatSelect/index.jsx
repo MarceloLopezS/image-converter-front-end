@@ -52,7 +52,6 @@ const FileOutputFormatSelect = ({ fileName, outputOptions }) => {
       ref={outputSelectRef}
       onChange={handleOutputSelect}
       name="output-format"
-      id="output-format"
       value={fileFormat || "-"}
     >
       <option disabled>-</option>
