@@ -153,8 +153,23 @@ button {
   cursor: pointer;
 }
 
-input {
+input,
+select {
   accent-color: var(--clr-accent-theme);
+  border: 1px solid var(--clr-theme);
+  border-radius: 0.2em;
+  outline: 2px solid transparent;
+}
+
+input:not([type="range"]),
+select {
+  outline-offset: 2px;
+}
+
+input:focus-visible,
+select:focus-within {
+  outline: 2px solid
+    color-mix(in oklab, var(--clr-accent-theme) 80%, var(--bg-theme) 20%);
 }
 
 #root {
