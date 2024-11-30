@@ -5,6 +5,7 @@ import {
   SET_FILES_SHARED_OUTPUT_PARAMS
 } from "@shared/state/config/actions"
 import WithRefOnFunctionProps from "@shared/ui/HOCs/WithRefOnFunctionProps"
+import RangeInput from "@shared/ui/RangeInput"
 import styles from "./ui/styles.module.css"
 
 const handleFormSubmit = fileName => (ref, event) => {
@@ -103,8 +104,8 @@ const ParamsForm = ({ fileName, serverOutputParams, ...attributes }) => {
               return (
                 <div className={styles["form-group"]} key={param.name}>
                   <label htmlFor={param.name}>{param.label}:</label>
-                  <div className="flex gap-50">
-                    {param?.is_bool ? (
+                  {param?.is_bool ? (
+                    <div className="flex gap-50">
                       <WithRefOnFunctionProps
                         onChange={handleInputChange(param)}
                         component={
@@ -116,22 +117,29 @@ const ParamsForm = ({ fileName, serverOutputParams, ...attributes }) => {
                           ></input>
                         }
                       />
-                    ) : param?.is_range ? (
+                      <p className="text-secondary">{param.description}</p>
+                    </div>
+                  ) : param?.is_range ? (
+                    <div className="flex flex-column">
                       <WithRefOnFunctionProps
                         onChange={handleInputChange(param)}
                         component={
-                          <input
+                          <RangeInput
+                            // Key resets component state when changes
+                            key={paramsCache?.[param.name] || param.default}
                             id={param.name}
                             name={param.name}
-                            type="range"
                             min={param.min}
                             max={param.max}
                             value={paramsCache?.[param.name] || param.default}
                           />
                         }
                       />
-                    ) : (
-                      param?.options && (
+                      <p className="text-secondary">{param.description}</p>
+                    </div>
+                  ) : (
+                    param?.options && (
+                      <div className="flex gap-50">
                         <WithRefOnFunctionProps
                           onChange={handleInputChange(param)}
                           component={
@@ -152,10 +160,10 @@ const ParamsForm = ({ fileName, serverOutputParams, ...attributes }) => {
                             </select>
                           }
                         />
-                      )
-                    )}
-                    <p className="text-secondary">{param.description}</p>
-                  </div>
+                        <p className="text-secondary">{param.description}</p>
+                      </div>
+                    )
+                  )}
                 </div>
               )
             })}
