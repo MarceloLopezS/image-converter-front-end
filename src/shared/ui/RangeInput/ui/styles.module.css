@@ -1,0 +1,13 @@
+.custom-range {
+  display: grid;
+  grid-template-columns: 1fr 3em;
+  gap: 0.5em;
+}
+
+.custom-range > input[type="number"] {
+  appearance: textfield;
+  text-align: center;
+  padding: 0.15em 0.25em;
+  border: 1px solid var(--clr-theme);
+  border-radius: 0.2em;
+}
