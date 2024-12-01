@@ -8,7 +8,13 @@ export const getFormattedInputValue = (input, { selectOptionSeparator }) => {
         ? Number(input.value)
         : input.type === "select-one"
           ? selectOptionSeparator != null
-            ? input.value.split(selectOptionSeparator)
+            ? input.value.split(selectOptionSeparator).map(item => {
+              try {
+                return Number(item)
+              } catch {
+                return item
+              }
+            })
             : input.value
           : input.value
 
