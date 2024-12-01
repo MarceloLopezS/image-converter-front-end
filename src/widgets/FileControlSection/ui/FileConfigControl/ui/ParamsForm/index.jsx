@@ -4,9 +4,9 @@ import {
   SET_FILE_OUTPUT_PARAMS,
   SET_FILES_SHARED_OUTPUT_PARAMS
 } from "@shared/state/config/actions"
-import { getFormattedInputValue } from "./lib/utils/functions"
 import WithRefOnFunctionProps from "@shared/ui/HOCs/WithRefOnFunctionProps"
 import RangeInput from "@shared/ui/RangeInput"
+import { getFormattedInputValue } from "./lib/utils/functions"
 import styles from "./ui/styles.module.css"
 
 const SELECT_OPTION_SEPARATOR = " x "
