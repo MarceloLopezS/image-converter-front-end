@@ -4,24 +4,25 @@ import {
   SET_FILE_OUTPUT_PARAMS,
   SET_FILES_SHARED_OUTPUT_PARAMS
 } from "@shared/state/config/actions"
+import { getFormattedInputValue } from "./lib/utils/functions"
 import WithRefOnFunctionProps from "@shared/ui/HOCs/WithRefOnFunctionProps"
 import RangeInput from "@shared/ui/RangeInput"
 import styles from "./ui/styles.module.css"
 
+const SELECT_OPTION_SEPARATOR = " x "
+
 const handleFormSubmit = fileName => (ref, event) => {
   event.preventDefault()
 
-  const outputParams = [...ref.current.querySelectorAll("input")]
+  const outputParams = [
+    ...ref.current.querySelectorAll("input"),
+    ...ref.current.querySelectorAll("select")
+  ]
     .filter(input => input.name)
     .reduce((acc, input) => {
-      const value =
-        input.type === "checkbox"
-          ? input.checked
-            ? 1
-            : 0
-          : input.type === "range" || input.type === "number"
-            ? Number(input.value)
-            : input.value
+      const value = getFormattedInputValue(input, {
+        selectOptionSeparator: SELECT_OPTION_SEPARATOR
+      })
 
       return { ...acc, [input.name]: value }
     }, {})
@@ -45,14 +46,9 @@ const ParamsForm = ({ fileName, serverOutputParams, ...attributes }) => {
   const [paramsCache, setParamsCache] = useState(outputParams)
 
   const handleInputChange = serverOutputParam => ref => {
-    const currentValue =
-      ref.current.type === "checkbox"
-        ? ref.current.checked
-          ? 1
-          : 0
-        : ref.current.type === "range" || ref.current.type === "number"
-          ? Number(ref.current.value)
-          : ref.current.value
+    const currentValue = getFormattedInputValue(ref.current, {
+      selectOptionSeparator: SELECT_OPTION_SEPARATOR
+    })
 
     setParamsCache(state => {
       if (serverOutputParam?.disables_params_on_value) {
@@ -142,17 +138,22 @@ const ParamsForm = ({ fileName, serverOutputParams, ...attributes }) => {
                         <WithRefOnFunctionProps
                           onChange={handleInputChange(param)}
                           component={
-                            <select id={param.name} name={param.name}>
+                            <select
+                              id={param.name}
+                              name={param.name}
+                              value={
+                                Array.isArray(paramsCache?.[param.name])
+                                  ? paramsCache[param.name].join(" x ")
+                                  : paramsCache[param.name] ||
+                                      Array.isArray(param.default)
+                                    ? param.default.join(" x ")
+                                    : param.default
+                              }
+                            >
                               {param.options.map(option => (
                                 <option key={`${option}`}>
                                   {Array.isArray(option)
-                                    ? option.reduce(
-                                        (acc, dimension) =>
-                                          acc
-                                            ? `${acc} x ${dimension}`
-                                            : `${dimension}`,
-                                        null
-                                      )
+                                    ? option.join(" x ")
                                     : option}
                                 </option>
                               ))}
