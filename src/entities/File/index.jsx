@@ -7,8 +7,10 @@ import {
 import { formatBytes } from "@shared/utils/functions"
 import DeleteSVG from "@shared/ui/SVGs/Delete"
 import SettingsSVG from "@shared/ui/SVGs/Settings"
-import styles from "./ui/styles.module.css"
 import Loader from "@shared/ui/Loader"
+import DownloadSVG from "@shared/ui/SVGs/Download"
+import ExclamationSVG from "@shared/ui/SVGs/Exclamation"
+import styles from "./ui/styles.module.css"
 
 const handleSettingsClick = fileName => () => {
   dispatch({ type: SET_CURRENT_FILE_TO_CONFIG, payload: { fileName } })
@@ -32,7 +34,6 @@ const File = ({ inputFile, outputFormatSelect, className, ...attributes }) => {
         <p>{inputFile.name}</p>
         <p className="text-secondary">{formatBytes(inputFile.size)}</p>
       </section>
-
       {fileConvertion?.status === "idle" ? (
         <section className={styles["file-item__actions"]}>
           {isValidElement(outputFormatSelect) && (
@@ -49,11 +50,13 @@ const File = ({ inputFile, outputFormatSelect, className, ...attributes }) => {
           </button>
         </section>
       ) : fileConvertion?.status === "processing" ? (
-        <Loader />
+        <Loader className={styles["loader"]} />
       ) : fileConvertion?.status === "success" ? (
-        "Success"
+        <button>
+          <DownloadSVG />
+        </button>
       ) : (
-        "Error"
+        <ExclamationSVG />
       )}
     </section>
   )
