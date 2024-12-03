@@ -5,7 +5,10 @@ import {
   SET_FILES_OUTPUT_FORMAT,
   SET_CURRENT_FILE_TO_CONFIG,
   SET_FILE_OUTPUT_PARAMS,
-  SET_FILES_SHARED_OUTPUT_PARAMS
+  SET_FILES_SHARED_OUTPUT_PARAMS,
+  SET_FILE_CONVERTION_IS_PROCESSING,
+  SET_FILE_CONVERTION_SUCCESS,
+  SET_FILE_CONVERTION_ERROR
 } from "../../config/actions"
 import {
   toggleTheme,
@@ -14,7 +17,10 @@ import {
   setFilesOutputFormat,
   setCurrentFileToConfig,
   setFileOutputParams,
-  setFilesSharedOutputParams
+  setFilesSharedOutputParams,
+  setFileConvertionIsProcessing,
+  setFileConvertionSuccess,
+  setFileConvertionError
 } from "../../model/actionHandlers"
 
 const rootReducer = (state, action) => {
@@ -33,6 +39,12 @@ const rootReducer = (state, action) => {
       return setFileOutputParams(state, action)
     case SET_FILES_SHARED_OUTPUT_PARAMS:
       return setFilesSharedOutputParams(state, action)
+    case SET_FILE_CONVERTION_IS_PROCESSING:
+      return setFileConvertionIsProcessing(state, action)
+    case SET_FILE_CONVERTION_SUCCESS:
+      return setFileConvertionSuccess(state, action)
+    case SET_FILE_CONVERTION_ERROR:
+      return setFileConvertionError(state, action)
     default:
       console.error(`Unknown action: ${action.type}`)
       return state
