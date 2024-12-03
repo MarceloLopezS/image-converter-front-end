@@ -12,6 +12,13 @@ const INITIAL_STATE = {
   },
   filesSharedConfigCache: {
     // outputParams: null | { [param1]: any, [param2]: any, ... }
+  },
+  filesConvertion: {
+    // [fileName]: {
+    //   status: "idle" | "processing" | "success" | "error",
+    //   convertionId: null | number,
+    //   error: null | string
+    // }
   }
 }
 
