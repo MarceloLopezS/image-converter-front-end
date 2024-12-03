@@ -40,15 +40,19 @@ const ImageInputContainer = () => {
 
   if (status === "pending")
     return (
-      <section className={styles["file-control__message-container"]}>
-        <Loader />
+      <section className={styles["file-control"]}>
+        <section className={styles["file-control__message-container"]}>
+          <Loader />
+        </section>
       </section>
     )
 
   if (status === "error")
     return (
-      <section className={styles["file-control__message-container"]}>
-        <p className="text-secondary">{DEFAULT_ERROR_MESSAGE}</p>
+      <section className={styles["file-control"]}>
+        <section className={styles["file-control__message-container"]}>
+          <p className="text-secondary">{DEFAULT_ERROR_MESSAGE}</p>
+        </section>
       </section>
     )
 
