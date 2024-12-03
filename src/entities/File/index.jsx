@@ -1,5 +1,5 @@
 import { isValidElement } from "react"
-import { dispatch } from "@shared/state/store"
+import { dispatch, useStoreData } from "@shared/state/store"
 import {
   DELETE_FILE,
   SET_CURRENT_FILE_TO_CONFIG
@@ -8,6 +8,7 @@ import { formatBytes } from "@shared/utils/functions"
 import DeleteSVG from "@shared/ui/SVGs/Delete"
 import SettingsSVG from "@shared/ui/SVGs/Settings"
 import styles from "./ui/styles.module.css"
+import Loader from "@shared/ui/Loader"
 
 const handleSettingsClick = fileName => () => {
   dispatch({ type: SET_CURRENT_FILE_TO_CONFIG, payload: { fileName } })
@@ -18,6 +19,10 @@ const handleDeleteClick = fileName => () => {
 }
 
 const File = ({ inputFile, outputFormatSelect, className, ...attributes }) => {
+  const fileConvertion = useStoreData(
+    status => status.filesConvertion[inputFile.name]
+  )
+
   return (
     <section
       className={`${styles["file-item"]}${className ? " " + className : ""}`}
@@ -27,20 +32,29 @@ const File = ({ inputFile, outputFormatSelect, className, ...attributes }) => {
         <p>{inputFile.name}</p>
         <p className="text-secondary">{formatBytes(inputFile.size)}</p>
       </section>
-      <section className={styles["file-item__actions"]}>
-        {isValidElement(outputFormatSelect) && (
-          <div className="flex sm-flex-column gap-50">
-            <label htmlFor="output-format">Output: </label>
-            {outputFormatSelect}
-          </div>
-        )}
-        <button onClick={handleSettingsClick(inputFile.name)} type="button">
-          <SettingsSVG />
-        </button>
-        <button onClick={handleDeleteClick(inputFile.name)} type="button">
-          <DeleteSVG />
-        </button>
-      </section>
+
+      {fileConvertion?.status === "idle" ? (
+        <section className={styles["file-item__actions"]}>
+          {isValidElement(outputFormatSelect) && (
+            <div className="flex sm-flex-column gap-50">
+              <label htmlFor="output-format">Output: </label>
+              {outputFormatSelect}
+            </div>
+          )}
+          <button onClick={handleSettingsClick(inputFile.name)} type="button">
+            <SettingsSVG />
+          </button>
+          <button onClick={handleDeleteClick(inputFile.name)} type="button">
+            <DeleteSVG />
+          </button>
+        </section>
+      ) : fileConvertion?.status === "processing" ? (
+        <Loader />
+      ) : fileConvertion?.status === "success" ? (
+        "Success"
+      ) : (
+        "Error"
+      )}
     </section>
   )
 }
