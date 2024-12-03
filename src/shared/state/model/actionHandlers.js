@@ -115,3 +115,50 @@ export const setFilesSharedOutputParams = (state, action) => {
 
   return { ...state, filesConfig, filesSharedConfigCache }
 }
+
+export const setFileConvertionIsProcessing = (state, action) => {
+  const { fileName } = action.payload
+
+  const fileConvertionConfig = {
+    [fileName]: {
+      ...state.filesConvertion[fileName],
+      status: "processing"
+    }
+  }
+
+  const filesConvertion = { ...state.filesConvertion, ...fileConvertionConfig }
+
+  return { ...state, filesConvertion }
+}
+
+export const setFileConvertionSuccess = (state, action) => {
+  const { fileName, convertionId } = action.payload
+
+  const fileConvertionConfig = {
+    [fileName]: {
+      ...state.filesConvertion[fileName],
+      status: "success",
+      convertionId
+    }
+  }
+
+  const filesConvertion = { ...state.filesConvertion, ...fileConvertionConfig }
+
+  return { ...state, filesConvertion }
+}
+
+export const setFileConvertionError = (state, action) => {
+  const { fileName, error } = action.payload
+
+  const fileConvertionConfig = {
+    [fileName]: {
+      ...state.filesConvertion[fileName],
+      status: "error",
+      error
+    }
+  }
+
+  const filesConvertion = { ...state.filesConvertion, ...fileConvertionConfig }
+
+  return { ...state, filesConvertion }
+}
