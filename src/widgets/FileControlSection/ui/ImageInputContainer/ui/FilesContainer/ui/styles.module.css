@@ -82,7 +82,7 @@
   align-items: center;
   padding-inline-start: 0.5em;
   border-block-end: var(--_border);
-  border-inline-start: var(--_border);
+  border-inline: var(--_border);
   border-end-start-radius: var(--_border-radius);
   border-end-end-radius: var(--_border-radius);
   overflow: clip;
@@ -95,6 +95,17 @@
   gap: 0.75em;
   padding-inline: 1em 1.5em;
   outline: 1px solid transparent;
+}
+
+.file-control__submit:disabled {
+  --clr-btn-theme: var(--clr-secondary-text);
+
+  background-color: color-mix(
+    in oklab,
+    var(--clr-secondary-text) 10%,
+    var(--bg-theme) 90%
+  );
+  cursor: default;
 }
 
 .arrow {
@@ -112,7 +123,7 @@
   transition-timing-function: var(--default-animation-timing-function);
 }
 
-.file-control__submit:hover .arrow,
-.file-control__submit:focus-visible .arrow {
+.file-control__submit:hover:not(:disabled) .arrow,
+.file-control__submit:focus-visible:not(:disabled) .arrow {
   translate: 100%;
 }
