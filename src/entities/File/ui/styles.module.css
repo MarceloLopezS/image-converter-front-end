@@ -19,7 +19,7 @@
   align-items: center;
 }
 
-.file-item__actions > button {
+.file-item button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,12 +30,17 @@
     var(--default-animation-timing-function);
 }
 
-.file-item__actions > button:hover,
-.file-item__actions > button:focus-visible {
+.file-item button:hover,
+.file-item button:focus-visible {
   color: var(--clr-accent-theme);
 }
 
-.file-item__actions svg {
+.loader,
+.file-item svg {
   width: 1.5em;
   height: 1.5em;
+}
+
+.loader {
+  border-width: 0.2em;
 }
