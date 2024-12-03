@@ -5,3 +5,7 @@ export const SET_FILES_OUTPUT_FORMAT = "set-files-output-format"
 export const SET_CURRENT_FILE_TO_CONFIG = "set-current-file-to-config"
 export const SET_FILE_OUTPUT_PARAMS = "set-file-output-params"
 export const SET_FILES_SHARED_OUTPUT_PARAMS = "set-files-shared-output-params"
+export const SET_FILE_CONVERTION_IS_PROCESSING =
+  "set-file-convertion-is-processing"
+export const SET_FILE_CONVERTION_SUCCESS = "set-file-convertion-success"
+export const SET_FILE_CONVERTION_ERROR = "set-file-convertion-error"
