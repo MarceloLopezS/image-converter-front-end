@@ -1,4 +1,4 @@
-import { DARK, INITIAL_FILE_PARAMS, LIGHT, THEME } from "../../utils/constants"
+import { DARK, INITIAL_FILE_CONVERTION, INITIAL_FILE_PARAMS, LIGHT, THEME } from "../../utils/constants"
 import { setLocalStorageItem } from "../../utils/functions"
 
 export const toggleTheme = state => {
@@ -25,7 +25,17 @@ export const addFiles = (state, action) => {
       return { ...acc, ...initialFileConfig }
     }, { ...state.filesConfig })
 
-  return { ...state, files, filesConfig }
+  const filesConvertion =
+    unrepeatedFiles.reduce((acc, file) => {
+      const initialFileConfig = {
+        [file.name]: INITIAL_FILE_CONVERTION
+      }
+
+      return { ...acc, ...initialFileConfig }
+    }, { ...state.filesConfig })
+
+
+  return { ...state, files, filesConfig, filesConvertion }
 }
 
 export const deleteFile = (state, action) => {
