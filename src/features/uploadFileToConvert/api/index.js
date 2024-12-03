@@ -1,6 +1,6 @@
 import { API_URL, API_ENDPOINT } from "@shared/utils/constants"
 
-const requestUploadFilesToConvert = async (fetchOptions) => {
+const requestUploadFileToConvert = async (fetchOptions) => {
   const request = new Request(
     `${API_URL}${API_ENDPOINT.CONVERT}`,
     fetchOptions
@@ -10,4 +10,4 @@ const requestUploadFilesToConvert = async (fetchOptions) => {
   return response
 }
 
-export default requestUploadFilesToConvert
+export default requestUploadFileToConvert
