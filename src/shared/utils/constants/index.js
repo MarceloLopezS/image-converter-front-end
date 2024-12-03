@@ -8,6 +8,11 @@ export const INITIAL_FILE_PARAMS = {
   outputFormat: null,
   outputParams: null
 }
+export const INITIAL_FILE_CONVERTION = {
+  status: "idle",
+  convertionId: null,
+  error: null
+}
 export const THEME = "theme"
 export const DARK = "dark"
 export const LIGHT = "light"
