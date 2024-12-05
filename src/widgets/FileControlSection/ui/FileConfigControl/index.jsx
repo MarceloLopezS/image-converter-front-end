@@ -62,6 +62,7 @@ const FileConfigControl = () => {
           <p className="text-secondary">{DEFAULT_ERROR_MESSAGE}</p>
         ) : (
           <ParamsForm
+            key={currentFileToConfig}
             fileName={currentFileToConfig}
             serverOutputParams={data?.data?.output_params}
           />
