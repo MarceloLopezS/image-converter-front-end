@@ -7,11 +7,12 @@ import {
 import WithRefOnFunctionProps from "@shared/ui/HOCs/WithRefOnFunctionProps"
 import RangeInput from "@shared/ui/RangeInput"
 import { getFormattedInputValue } from "./lib/utils/functions"
+import useNotification from "./model/hooks/useNotification"
 import styles from "./ui/styles.module.css"
 
 const SELECT_OPTION_SEPARATOR = " x "
 
-const handleFormSubmit = fileName => (ref, event) => {
+const handleFormSubmit = (fileName, showNotification) => (ref, event) => {
   event.preventDefault()
 
   const outputParams = [
@@ -36,6 +37,8 @@ const handleFormSubmit = fileName => (ref, event) => {
         type: SET_FILES_SHARED_OUTPUT_PARAMS,
         payload: { outputParams }
       })
+
+  showNotification()
 }
 
 const ParamsForm = ({ fileName, serverOutputParams, ...attributes }) => {
@@ -44,6 +47,8 @@ const ParamsForm = ({ fileName, serverOutputParams, ...attributes }) => {
     : useStoreData(state => state.filesSharedConfigCache?.outputParams)
 
   const [paramsCache, setParamsCache] = useState(outputParams)
+  const { isNotificationVisible, setVisibleNotification } =
+    useNotification(1500)
 
   const handleInputChange = serverOutputParam => ref => {
     const currentValue = getFormattedInputValue(ref.current, {
@@ -87,7 +92,7 @@ const ParamsForm = ({ fileName, serverOutputParams, ...attributes }) => {
 
   return !paramsCache ? null : (
     <WithRefOnFunctionProps
-      onSubmit={handleFormSubmit(fileName)}
+      onSubmit={handleFormSubmit(fileName, setVisibleNotification)}
       className={styles["params-form"]}
       {...attributes}
       component={
@@ -167,6 +172,13 @@ const ParamsForm = ({ fileName, serverOutputParams, ...attributes }) => {
                 </div>
               )
             })}
+            <div
+              className={styles["action-alert"]}
+              aria-hidden={!isNotificationVisible ? true : null}
+              data-shown={isNotificationVisible ? true : null}
+            >
+              Settings applied
+            </div>
           </section>
           <section className={styles["form-actions"]}>
             <button
