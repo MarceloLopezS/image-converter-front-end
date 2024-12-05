@@ -5,16 +5,46 @@
 
 .params-container {
   flex-grow: 1;
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.75em;
   padding: 1em;
+  isolation: isolate;
+  overflow-y: clip;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 0.15em;
+}
+
+.action-alert {
+  --_alert-margin: 0.25em;
+
+  position: absolute;
+  z-index: 2;
+  right: var(--_alert-margin);
+  top: var(--_alert-margin);
+  opacity: 0;
+  translate: 0 -100%;
+  background-color: color-mix(
+    in oklab,
+    var(--clr-accent-theme) 45%,
+    var(--bg-theme) 55%
+  );
+  padding: 0.25em 0.5em;
+  border-radius: calc(var(--_children-border-radius) - var(--_alert-margin));
+  transition-property: opacity, translate;
+  transition-duration: var(--animation-duration-300),
+    var(--animation-duration-500);
+  transition-timing-function: var(--default-animation-timing-function);
+}
+
+.action-alert[data-shown] {
+  opacity: 1;
+  translate: 0 0;
 }
 
 .form-actions {
