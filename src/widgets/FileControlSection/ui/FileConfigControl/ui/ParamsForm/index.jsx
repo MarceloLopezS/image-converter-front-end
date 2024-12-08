@@ -56,20 +56,26 @@ const ParamsForm = ({ fileName, serverOutputParams, ...attributes }) => {
     })
 
     setParamsCache(state => {
-      if (serverOutputParam?.disables_params_on_value) {
-        const filteredParams = serverOutputParams
-          .filter(
-            param =>
-              !serverOutputParam.disables_params_on_value[
-                currentValue
-              ].includes(param.name)
-          )
-          .reduce((acc, param) => {
-            return { ...acc, [param.name]: state[param.name] || param.default }
-          }, {})
+      if (serverOutputParam?.disabled_fields_on_enabled) {
+        const filteredParams =
+          Boolean(currentValue) === true
+            ? serverOutputParams.filter(
+                param =>
+                  !serverOutputParam.disabled_fields_on_enabled.includes(
+                    param.name
+                  )
+              )
+            : serverOutputParams
+
+        const params = filteredParams.reduce((acc, param) => {
+          return {
+            ...acc,
+            [param.name]: state[param.name] || param.default
+          }
+        })
 
         return {
-          ...filteredParams,
+          ...params,
           [serverOutputParam.name]: currentValue
         }
       }
