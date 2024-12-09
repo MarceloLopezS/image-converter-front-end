@@ -104,80 +104,87 @@ const ParamsForm = ({ fileName, serverOutputParams, ...attributes }) => {
       component={
         <form>
           <section className={styles["params-container"]}>
-            {serverOutputParams.map(param => {
-              if (paramsCache[param.name] == null) return null
+            {serverOutputParams
+              .toSorted((a, b) =>
+                // Show exif param last
+                a.name === "exif" ? 1 : b.name === "exif" ? -1 : 0
+              )
+              .map(param => {
+                if (paramsCache[param.name] == null) return null
 
-              return (
-                <div className={styles["form-group"]} key={param.name}>
-                  <label htmlFor={param.name}>{param.label}:</label>
-                  {param?.is_bool ? (
-                    <div className="flex gap-50">
-                      <WithRefOnFunctionProps
-                        onChange={handleInputChange(param)}
-                        component={
-                          <input
-                            id={param.name}
-                            name={param.name}
-                            type="checkbox"
-                            checked={paramsCache?.[param.name] || param.default}
-                          ></input>
-                        }
-                      />
-                      <p className="text-secondary">{param.description}</p>
-                    </div>
-                  ) : param?.is_range ? (
-                    <div className="flex flex-column">
-                      <WithRefOnFunctionProps
-                        onChange={handleInputChange(param)}
-                        component={
-                          <RangeInput
-                            // Key resets component state when changes
-                            key={paramsCache?.[param.name] || param.default}
-                            id={param.name}
-                            name={param.name}
-                            min={param.min}
-                            max={param.max}
-                            value={paramsCache?.[param.name] || param.default}
-                          />
-                        }
-                      />
-                      <p className="text-secondary">{param.description}</p>
-                    </div>
-                  ) : (
-                    param?.options && (
+                return (
+                  <div className={styles["form-group"]} key={param.name}>
+                    <label htmlFor={param.name}>{param.label}:</label>
+                    {param?.is_bool ? (
                       <div className="flex gap-50">
                         <WithRefOnFunctionProps
                           onChange={handleInputChange(param)}
                           component={
-                            <select
+                            <input
                               id={param.name}
                               name={param.name}
-                              value={
-                                Array.isArray(paramsCache?.[param.name])
-                                  ? paramsCache[param.name].join(" x ")
-                                  : paramsCache[param.name] ||
-                                      Array.isArray(param.default)
-                                    ? param.default.join(" x ")
-                                    : param.default
+                              type="checkbox"
+                              checked={
+                                paramsCache?.[param.name] || param.default
                               }
-                            >
-                              {param.options.map(option => (
-                                <option key={`${option}`}>
-                                  {Array.isArray(option)
-                                    ? option.join(" x ")
-                                    : option}
-                                </option>
-                              ))}
-                            </select>
+                            ></input>
                           }
                         />
                         <p className="text-secondary">{param.description}</p>
                       </div>
-                    )
-                  )}
-                </div>
-              )
-            })}
+                    ) : param?.is_range ? (
+                      <div className="flex flex-column">
+                        <WithRefOnFunctionProps
+                          onChange={handleInputChange(param)}
+                          component={
+                            <RangeInput
+                              // Key resets component state when changes
+                              key={paramsCache?.[param.name] || param.default}
+                              id={param.name}
+                              name={param.name}
+                              min={param.min}
+                              max={param.max}
+                              value={paramsCache?.[param.name] || param.default}
+                            />
+                          }
+                        />
+                        <p className="text-secondary">{param.description}</p>
+                      </div>
+                    ) : (
+                      param?.options && (
+                        <div className="flex gap-50">
+                          <WithRefOnFunctionProps
+                            onChange={handleInputChange(param)}
+                            component={
+                              <select
+                                id={param.name}
+                                name={param.name}
+                                value={
+                                  Array.isArray(paramsCache?.[param.name])
+                                    ? paramsCache[param.name].join(" x ")
+                                    : paramsCache[param.name] ||
+                                        Array.isArray(param.default)
+                                      ? param.default.join(" x ")
+                                      : param.default
+                                }
+                              >
+                                {param.options.map(option => (
+                                  <option key={`${option}`}>
+                                    {Array.isArray(option)
+                                      ? option.join(" x ")
+                                      : option}
+                                  </option>
+                                ))}
+                              </select>
+                            }
+                          />
+                          <p className="text-secondary">{param.description}</p>
+                        </div>
+                      )
+                    )}
+                  </div>
+                )
+              })}
             <div
               className={styles["action-alert"]}
               aria-hidden={!isNotificationVisible ? true : null}
