@@ -22,8 +22,7 @@ const FilesContainer = ({
   files,
   allowedExtensions,
   maxFileSizeBytes,
-  outputOptions,
-  onConvertClick
+  outputOptions
 }) => {
   const currentFileToConfig = useStoreData(state => state.currentFileToConfig)
   const fileInputHandler = useInputValidationHandler(
