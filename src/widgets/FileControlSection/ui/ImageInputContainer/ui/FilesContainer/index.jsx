@@ -11,6 +11,7 @@ import SettingsSVG from "@shared/ui/SVGs/Settings"
 import File from "@entities/File"
 import FileOutputFormatSelect from "./ui/FileOutputFormatSelect"
 import AllFilesOutputFormatSelect from "./ui/AllFilesOutputFormatSelect"
+import ConvertButton from "./ui/ConvertButton"
 import styles from "./ui/styles.module.css"
 
 const handleAllFilesSettingsClick = () => {
@@ -87,14 +88,10 @@ const FilesContainer = ({
             <SettingsSVG />
           </button>
         </div>
-        <button
-          onClick={onConvertClick}
-          className={styles["file-control__submit"]}
-          type="button"
-        >
+        <ConvertButton files={files} className={styles["file-control__submit"]}>
           Convert
           <i className={styles["arrow"]}></i>
-        </button>
+        </ConvertButton>
       </section>
     </section>
   )
