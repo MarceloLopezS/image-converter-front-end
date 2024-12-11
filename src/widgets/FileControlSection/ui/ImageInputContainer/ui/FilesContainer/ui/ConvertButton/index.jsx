@@ -1,10 +1,10 @@
 import { dispatch, useStoreData } from "@shared/state/store"
-import uploadFileToConvert from "@features/uploadFileToConvert"
 import {
   SET_FILE_CONVERTION_ERROR,
   SET_FILE_CONVERTION_IS_PROCESSING,
   SET_FILE_CONVERTION_SUCCESS
 } from "@shared/state/config/actions"
+import uploadFileToConvert from "@features/uploadFileToConvert"
 
 const ConvertButton = ({ files, className, children }) => {
   const filesConfig = useStoreData(state => state.filesConfig)

@@ -1,6 +1,6 @@
 import { useRef } from "react"
-import { SET_FILE_CONVERTION_ERROR } from "@shared/state/config/actions"
 import { dispatch, useStoreData } from "@shared/state/store"
+import { SET_FILE_CONVERTION_ERROR } from "@shared/state/config/actions"
 import DownloadSVG from "@shared/ui/SVGs/Download"
 import downloadConvertedFile from "@features/downloadConvertedFile"
 
