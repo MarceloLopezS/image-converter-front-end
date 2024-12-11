@@ -2,7 +2,8 @@ export const API_URL = import.meta.env.VITE_API_URL
 export const API_ENDPOINT = {
   ALLOWED_IO_PARAMS: "/allowed-io-params",
   OUTPUT_FORMAT_PARAMS: "/output-format-param-fields",
-  CONVERT: "/convert"
+  CONVERT: "/convert",
+  DOWNLOAD_CONVERTED_FILE: "/download-converted-file",
 }
 export const INITIAL_FILE_PARAMS = {
   outputFormat: null,
