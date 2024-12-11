@@ -11,6 +11,7 @@ import SettingsSVG from "@shared/ui/SVGs/Settings"
 import File from "@entities/File"
 import FileOutputFormatSelect from "./ui/FileOutputFormatSelect"
 import AllFilesOutputFormatSelect from "./ui/AllFilesOutputFormatSelect"
+import DownloadButton from "./ui/DownloadButton"
 import ConvertButton from "./ui/ConvertButton"
 import styles from "./ui/styles.module.css"
 
@@ -63,6 +64,7 @@ const FilesContainer = ({
                 outputOptions={outputOptions}
               />
             }
+            downloadButton={<DownloadButton fileName={file.name} />}
             className={styles["file-control__file-item"]}
             data-current-file-to-config={
               currentFileToConfig === file.name ? true : null
