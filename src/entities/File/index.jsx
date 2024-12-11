@@ -8,7 +8,6 @@ import { formatBytes } from "@shared/utils/functions"
 import DeleteSVG from "@shared/ui/SVGs/Delete"
 import SettingsSVG from "@shared/ui/SVGs/Settings"
 import Loader from "@shared/ui/Loader"
-import DownloadSVG from "@shared/ui/SVGs/Download"
 import ExclamationSVG from "@shared/ui/SVGs/Exclamation"
 import styles from "./ui/styles.module.css"
 
@@ -20,7 +19,13 @@ const handleDeleteClick = fileName => () => {
   dispatch({ type: DELETE_FILE, payload: { fileName } })
 }
 
-const File = ({ inputFile, outputFormatSelect, className, ...attributes }) => {
+const File = ({
+  inputFile,
+  outputFormatSelect,
+  downloadButton,
+  className,
+  ...attributes
+}) => {
   const fileConvertion = useStoreData(
     status => status.filesConvertion[inputFile.name]
   )
@@ -52,9 +57,7 @@ const File = ({ inputFile, outputFormatSelect, className, ...attributes }) => {
       ) : fileConvertion?.status === "processing" ? (
         <Loader className={styles["loader"]} />
       ) : fileConvertion?.status === "success" ? (
-        <button>
-          <DownloadSVG />
-        </button>
+        downloadButton
       ) : (
         <ExclamationSVG />
       )}
