@@ -1,49 +1,58 @@
-import { useRef } from "react"
-import { dispatch, useStoreData } from "@shared/state/store"
-import { SET_FILE_CONVERTION_ERROR } from "@shared/state/config/actions"
+import { useStoreData } from "@shared/state/store"
+import useDownload from "@shared/model/hooks/useDownload"
+import Loader from "@shared/ui/Loader"
 import DownloadSVG from "@shared/ui/SVGs/Download"
 import downloadConvertedFile from "@features/downloadConvertedFile"
+import ExclamationSVG from "@shared/ui/SVGs/Exclamation"
+
+const downloadRequest = convertionId => () =>
+  downloadConvertedFile(convertionId)
+
+const responseHandler = async (response, setHref) => {
+  if (response.status === 200) {
+    const blob = await response.blob()
+    const url = URL.createObjectURL(blob)
+
+    setHref(url)
+  } else {
+    const data = await response.json()
+    throw new Error(data.data.message)
+  }
+}
 
 const DownloadButton = ({ fileName }) => {
   const convertionId = useStoreData(
     state => state.filesConvertion?.[fileName]?.convertionId
   )
-  const linkRef = useRef(null)
+  const { linkRef, download, href, isLoading, error } = useDownload(
+    downloadRequest(convertionId),
+    responseHandler
+  )
 
   const onDownloadClick = async () => {
-    if (linkRef.current.getAttribute("href")) {
+    if (href) {
       linkRef.current.click()
       return
     }
 
-    try {
-      const response = await downloadConvertedFile(convertionId)
-
-      if (response.status === 200) {
-        const blob = await response.blob()
-        const url = URL.createObjectURL(blob)
-
-        linkRef.current.setAttribute("href", url)
-        linkRef.current.setAttribute("download", `${fileName.split(".")[0]}`)
-        linkRef.current.click()
-      } else {
-        const data = await response.json()
-        throw new Error(data.data.message)
-      }
-    } catch (err) {
-      console.error(err)
-      dispatch({
-        type: SET_FILE_CONVERTION_ERROR,
-        payload: { fileName, error: err }
-      })
-    }
+    await download()
   }
+
+  if (isLoading) return <Loader data-loader={true} />
 
   return (
     <button onClick={onDownloadClick} type="button">
-      <a ref={linkRef}>
-        <DownloadSVG />
-      </a>
+      {error ? (
+        <ExclamationSVG />
+      ) : (
+        <a
+          ref={linkRef}
+          href={href}
+          download={href ? `${fileName.split(".")[0]}` : null}
+        >
+          <DownloadSVG />
+        </a>
+      )}
     </button>
   )
 }
