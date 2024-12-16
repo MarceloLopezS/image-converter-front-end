@@ -12,7 +12,7 @@ import File from "@entities/File"
 import FileOutputFormatSelect from "./ui/FileOutputFormatSelect"
 import AllFilesOutputFormatSelect from "./ui/AllFilesOutputFormatSelect"
 import DownloadButton from "./ui/DownloadButton"
-import ConvertButton from "./ui/ConvertButton"
+import SubmitButton from "./ui/SubmitButton"
 import styles from "./ui/styles.module.css"
 
 const handleAllFilesSettingsClick = () => {
@@ -89,10 +89,10 @@ const FilesContainer = ({
             <SettingsSVG />
           </button>
         </div>
-        <ConvertButton files={files} className={styles["file-control__submit"]}>
-          Convert
-          <i className={styles["arrow"]}></i>
-        </ConvertButton>
+        <SubmitButton
+          files={files}
+          className={styles["file-control__submit"]}
+        />
       </section>
     </section>
   )
