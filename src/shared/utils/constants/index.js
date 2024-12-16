@@ -4,6 +4,7 @@ export const API_ENDPOINT = {
   OUTPUT_FORMAT_PARAMS: "/output-format-param-fields",
   CONVERT: "/convert",
   DOWNLOAD_CONVERTED_FILE: "/download-converted-file",
+  DOWNLOAD_ALL_CONVERTED_FILES: "/download-all-converted-files",
 }
 export const INITIAL_FILE_PARAMS = {
   outputFormat: null,
