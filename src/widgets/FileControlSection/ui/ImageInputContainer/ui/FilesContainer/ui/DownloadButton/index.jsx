@@ -45,13 +45,15 @@ const DownloadButton = ({ fileName }) => {
       {error ? (
         <ExclamationSVG />
       ) : (
-        <a
-          ref={linkRef}
-          href={href}
-          download={href ? `${fileName.split(".")[0]}` : null}
-        >
+        <>
+          <a
+            style={{ display: "none" }}
+            ref={linkRef}
+            href={href}
+            download={href ? `${fileName.split(".")[0]}` : null}
+          ></a>
           <DownloadSVG />
-        </a>
+        </>
       )}
     </button>
   )
