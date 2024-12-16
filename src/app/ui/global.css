@@ -262,6 +262,10 @@ select:focus-within {
   gap: 0.5em;
 }
 
+.gap-75 {
+  gap: 0.75em;
+}
+
 .grid {
   display: grid;
 }
