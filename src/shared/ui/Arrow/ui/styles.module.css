@@ -1,0 +1,19 @@
+.arrow {
+  --_width: 0.2em;
+  --_stroke-width: 2px;
+
+  border: solid var(--clr-btn-theme);
+  border-width: 0 var(--_stroke-width) var(--_stroke-width) 0;
+  display: inline-block;
+  padding: var(--_width);
+  rotate: -45deg;
+  transition-property: border-color, translate;
+  transition-duration: var(--animation-duration-300),
+    var(--animation-duration-500);
+  transition-timing-function: var(--default-animation-timing-function);
+}
+
+:has(> .arrow):hover:not(:disabled) .arrow,
+:has(> .arrow):focus-visible:not(:disabled) .arrow {
+  translate: 100%;
+}
