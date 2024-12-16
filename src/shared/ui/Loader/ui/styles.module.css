@@ -3,7 +3,7 @@
   aspect-ratio: 1;
   border-radius: 50%;
   border: 0.3em solid;
-  border-color: var(--clr-accent-theme) var(--bg-theme);
+  border-color: var(--clr-accent-theme) transparent;
   animation: l1 1s infinite;
 }
 @keyframes l1 {
