@@ -9,6 +9,7 @@ import FileInput from "@shared/ui/FileInput"
 import FileSVG from "@shared/ui/SVGs/File"
 import SettingsSVG from "@shared/ui/SVGs/Settings"
 import File from "@entities/File"
+import HardResetButton from "./ui/HardResetButton"
 import FileOutputFormatSelect from "./ui/FileOutputFormatSelect"
 import AllFilesOutputFormatSelect from "./ui/AllFilesOutputFormatSelect"
 import DownloadButton from "./ui/DownloadButton"
@@ -26,8 +27,14 @@ const FilesContainer = ({
   outputOptions
 }) => {
   const currentFileToConfig = useStoreData(state => state.currentFileToConfig)
+  const filesConvertion = useStoreData(state => state.filesConvertion)
+
   const fileInputHandler = useInputValidationHandler(
     isFileInputValid(allowedExtensions, maxFileSizeBytes)
+  )
+
+  const areFilesIdle = !!files.every(
+    file => filesConvertion?.[file.name]?.status === "idle"
   )
 
   const handleInputChange = () => {
@@ -44,15 +51,21 @@ const FilesContainer = ({
   return (
     <section className={styles["file-control__files-container"]}>
       <section className={styles["file-control__add-files"]}>
-        <FileInput
-          ref={fileInputHandler.inputRef}
-          className={styles["add-more-files-input"]}
-          fileTypeIndicator={<FileSVG />}
-          inputDescription="Add more files"
-          acceptedFileTypes={allowedExtensions.map(ext => `.${ext}`)}
-          onChange={handleInputChange}
-          multiple
-        />
+        {areFilesIdle ? (
+          <FileInput
+            ref={fileInputHandler.inputRef}
+            className={styles["add-more-files-input"]}
+            fileTypeIndicator={<FileSVG />}
+            inputDescription="Add more files"
+            acceptedFileTypes={allowedExtensions.map(ext => `.${ext}`)}
+            onChange={handleInputChange}
+            multiple
+          />
+        ) : (
+          <HardResetButton className={styles["convert-more"]} type="button">
+            Convert more files
+          </HardResetButton>
+        )}
       </section>
       <section className={styles["file-control__files-preview"]}>
         {files.map(file => (
@@ -74,21 +87,25 @@ const FilesContainer = ({
         ))}
       </section>
       <section className={styles["file-control__output-actions"]}>
-        <div className="flex gap-50 align-items-center">
-          <label htmlFor="all-files-output">
-            All {`(${files.length})`} output:
-          </label>
-          <AllFilesOutputFormatSelect
-            outputOptions={outputOptions}
-            fileNames={files.map(file => file.name)}
-          />
-          <button
-            className={styles["settings-btn"]}
-            onClick={handleAllFilesSettingsClick}
-          >
-            <SettingsSVG />
-          </button>
-        </div>
+        {areFilesIdle ? (
+          <div className="flex gap-50 align-items-center">
+            <label htmlFor="all-files-output">
+              All {`(${files.length})`} output:
+            </label>
+            <AllFilesOutputFormatSelect
+              outputOptions={outputOptions}
+              fileNames={files.map(file => file.name)}
+            />
+            <button
+              className={styles["settings-btn"]}
+              onClick={handleAllFilesSettingsClick}
+            >
+              <SettingsSVG />
+            </button>
+          </div>
+        ) : (
+          <div></div>
+        )}
         <SubmitButton
           files={files}
           className={styles["file-control__submit"]}
