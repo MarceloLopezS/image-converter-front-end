@@ -46,7 +46,7 @@ const DownloadAllButton = ({ convertionIds, className }) => {
             style={{ display: "none" }}
             ref={linkRef}
             href={href}
-            download={href ? "converted_files" : null}
+            download={href ? "ImageIO-converted-files" : null}
             className="flex align-items-center gap-75"
           ></a>
           Download All
