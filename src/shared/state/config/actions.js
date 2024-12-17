@@ -9,3 +9,4 @@ export const SET_FILE_CONVERTION_IS_PROCESSING =
   "set-file-convertion-is-processing"
 export const SET_FILE_CONVERTION_SUCCESS = "set-file-convertion-success"
 export const SET_FILE_CONVERTION_ERROR = "set-file-convertion-error"
+export const RESET_ALL_FILE_STATE = "reset-all-file-state"
