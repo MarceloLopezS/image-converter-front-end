@@ -13,6 +13,11 @@ const FileConfigControl = () => {
   const files = useStoreData(state => state.files)
   const filesConfig = useStoreData(state => state.filesConfig)
   const currentFileToConfig = useStoreData(state => state.currentFileToConfig)
+  const filesConvertion = useStoreData(state => state.filesConvertion)
+
+  const areFilesIdle = !!files.every(
+    file => filesConvertion?.[file.name]?.status === "idle"
+  )
 
   const outputFormats = new Set(
     Object.values(filesConfig).map(fileConfig => fileConfig.outputFormat)
@@ -35,6 +40,26 @@ const FileConfigControl = () => {
     ],
     enabled: !warningMessage
   })
+
+  if (!areFilesIdle) {
+    return (
+      <section className={styles["file-config-container"]}>
+        <section
+          className={styles["file-config__header"]}
+          data-current-file-to-config={
+            currentFileToConfig ? currentFileToConfig : null
+          }
+        >
+          <p>Settings:</p>
+        </section>
+        <section className={styles["file-config__body"]}>
+          <p className="text-secondary">
+            Settings were applied for convertion.
+          </p>
+        </section>
+      </section>
+    )
+  }
 
   return (
     <section className={styles["file-config-container"]}>
