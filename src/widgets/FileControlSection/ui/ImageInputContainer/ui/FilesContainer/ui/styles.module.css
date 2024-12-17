@@ -6,20 +6,22 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .file-control__add-files {
   align-self: start;
 }
 
-.add-more-files-input {
+.add-more-files-input,
+.convert-more {
   padding: var(--_children-header-block-padding) 1em;
   border-start-start-radius: var(--_border-radius);
   border-start-end-radius: var(--_border-radius);
 }
 
 .add-more-files-input,
+.convert-more,
 .file-control__submit {
   color: var(--clr-btn-theme);
   background-color: var(--clr-accent-theme);
@@ -32,6 +34,8 @@
 
 .add-more-files-input:hover,
 .add-more-files-input:focus-within,
+.convert-more:hover,
+.convert-more:focus-within,
 .file-control__submit:hover,
 .file-control__submit:focus-visible {
   background-color: var(--bg-btn-hover);
