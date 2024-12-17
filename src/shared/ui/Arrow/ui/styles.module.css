@@ -6,14 +6,26 @@
   border-width: 0 var(--_stroke-width) var(--_stroke-width) 0;
   display: inline-block;
   padding: var(--_width);
-  rotate: -45deg;
   transition-property: border-color, translate;
   transition-duration: var(--animation-duration-300),
     var(--animation-duration-500);
   transition-timing-function: var(--default-animation-timing-function);
 }
 
-:has(> .arrow):hover:not(:disabled) .arrow,
-:has(> .arrow):focus-visible:not(:disabled) .arrow {
+.arrow[data-variant="backward"] {
+  rotate: 135deg;
+}
+
+.arrow[data-variant="forward"] {
+  rotate: -45deg;
+}
+
+:has(> .arrow):hover:not(:disabled) .arrow[data-variant="backward"],
+:has(> .arrow):focus-visible:not(:disabled) .arrow[data-variant="backward"] {
+  translate: -100%;
+}
+
+:has(> .arrow):hover:not(:disabled) .arrow[data-variant="forward"],
+:has(> .arrow):focus-visible:not(:disabled) .arrow[data-variant="forward"] {
   translate: 100%;
 }
