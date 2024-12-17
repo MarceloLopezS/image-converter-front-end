@@ -21,13 +21,9 @@ const Navbar = () => {
           <nav className={styles.navbar__nav}>
             <ul>
               <li>
-                <a href="#convert"> Convert </a>
-              </li>
-              <li>
-                <a href="#formats"> Formats </a>
-              </li>
-              <li>
-                <a href="about"> About </a>
+                <a href="https://github.com/MarceloLopezS/image-converter-front-end">
+                  About this project
+                </a>
               </li>
             </ul>
           </nav>
