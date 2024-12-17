@@ -4,8 +4,15 @@
 
   display: flex;
   flex-direction: column;
+  aspect-ratio: 3 / 4;
   border: var(--_container-border);
   border-radius: var(--_children-border-radius);
+}
+
+@media (min-width: 49rem) {
+  .file-config-container {
+    aspect-ratio: 5 / 4;
+  }
 }
 
 .file-config__header {
