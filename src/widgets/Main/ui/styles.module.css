@@ -1,6 +1,6 @@
 .main {
   flex-grow: 1;
-  padding-block: 2.5em 0;
+  padding-block-start: 2.5em;
   transition-property: background-color, color;
   transition-duration: var(--animation-duration-500),
     var(--animation-duration-300);
@@ -9,6 +9,6 @@
 
 @media (min-width: 69rem) {
   .main {
-    padding-block: 2em;
+    padding-block-start: 2em;
   }
 }
