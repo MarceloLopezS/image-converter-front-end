@@ -27,12 +27,12 @@ export const addFiles = (state, action) => {
 
   const filesConvertion =
     unrepeatedFiles.reduce((acc, file) => {
-      const initialFileConfig = {
+      const initialFileConvertionConfig = {
         [file.name]: INITIAL_FILE_CONVERTION
       }
 
-      return { ...acc, ...initialFileConfig }
-    }, { ...state.filesConfig })
+      return { ...acc, ...initialFileConvertionConfig }
+    }, { ...state.filesConvertion })
 
 
   return { ...state, files, filesConfig, filesConvertion }
