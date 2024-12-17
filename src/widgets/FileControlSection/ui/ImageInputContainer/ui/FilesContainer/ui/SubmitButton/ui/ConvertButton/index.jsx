@@ -1,5 +1,6 @@
 import { dispatch, useStoreData } from "@shared/state/store"
 import {
+  SET_CURRENT_FILE_TO_CONFIG,
   SET_FILE_CONVERTION_ERROR,
   SET_FILE_CONVERTION_IS_PROCESSING,
   SET_FILE_CONVERTION_SUCCESS
@@ -13,6 +14,11 @@ const ConvertButton = ({ files, className, children }) => {
   )
 
   const onConvertClick = async () => {
+    dispatch({
+      type: SET_CURRENT_FILE_TO_CONFIG,
+      payload: { fileName: null }
+    })
+
     if (files.length === 0) return
 
     if (!filesConfig) return
