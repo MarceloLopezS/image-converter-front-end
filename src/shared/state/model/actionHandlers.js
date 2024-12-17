@@ -162,3 +162,14 @@ export const setFileConvertionError = (state, action) => {
 
   return { ...state, filesConvertion }
 }
+
+export const resetAllFileState = (state) => {
+  return {
+    ...state,
+    files: [],
+    currentFileToConfig: null,
+    filesConfig: {},
+    filesSharedConfigCache: {},
+    filesConvertion: {}
+  }
+}
